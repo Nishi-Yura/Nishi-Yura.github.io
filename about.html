@@ -7,6 +7,20 @@
     <meta name="description" content="プロフィールやこれまでの経歴について。">
     <link rel="stylesheet" href="css/style.css">
     <style>
+        .about-name-en {
+            font-size: 1.2rem;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-left: 1rem;
+        }
+        @media screen and (max-width: 768px) {
+            .about-name-en {
+                display: block;
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
         .about-content {
             margin-top: 6rem;
             font-size: 1.2rem;
@@ -100,7 +114,21 @@
             .about-content h2 {
                 font-size: 2.5rem;
             }
-            .about-content {
+            .about-name-en {
+            font-size: 1.2rem;
+            color: #888;
+            font-weight: 300;
+            letter-spacing: 0.05em;
+            margin-left: 1rem;
+        }
+        @media screen and (max-width: 768px) {
+            .about-name-en {
+                display: block;
+                margin-left: 0;
+                margin-top: 0.5rem;
+            }
+        }
+        .about-content {
                 font-size: 1rem;
             }
             .skills-list li {
@@ -134,7 +162,7 @@
             <div class="container">
                 <h1 class="section-title fade-in">ABOUT</h1>
                 <div class="about-content fade-in">
-                    <h2>西本 ゆら <span style="font-size: 1.2rem; color: #888; font-weight: 300; letter-spacing: 0.05em; margin-left: 1rem;">Nishimoto Yura</span></h2>
+                    <h2>西本 ゆら <span class="about-name-en">Nishimoto Yura</span></h2>
                     <p>
                         自己紹介をかく
                     </p>
