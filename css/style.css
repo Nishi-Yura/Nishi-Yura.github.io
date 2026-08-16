@@ -237,9 +237,12 @@ h1, h2, h3, h4, h5, h6 {
     .footer__top {
         margin-bottom: 4rem;
     }
-    .footer__huge-text {
+        .footer__huge-text {
         font-size: 12vw;
         white-space: nowrap;
+    }
+    .footer__huge-text.fade-in {
+        transform: translateY(0);
     }
     .footer__huge-text .letter-wrap:hover .letter {
         transform: none;
