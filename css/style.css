@@ -200,7 +200,21 @@ h1, h2, h3, h4, h5, h6 {
     cursor: default;
 }
 
-.footer__huge-text span {
+
+.letter-wrap {
+    display: inline-block;
+    position: relative;
+}
+.letter-wrap::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 180%;
+    z-index: 10;
+}
+.footer__huge-text .letter {
     display: inline-block;
     transform: scaleY(1.8);
     transform-origin: bottom;
@@ -208,17 +222,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Nの左側のフォント余白を削って縁に密着させる */
-.footer__huge-text span:first-child {
+.footer__huge-text .letter-wrap:first-child .letter {
     margin-left: -0.6vw;
 }
 
 /* Aの右側のフォント余白を削って縁に密着させる */
-.footer__huge-text span:last-child {
+.footer__huge-text .letter-wrap:last-child .letter {
     margin-right: -0.6vw;
 }
 
-.footer__huge-text span:hover {
-    transform: scaleY(1.4);
+.footer__huge-text .letter-wrap:hover .letter {
+    transform: scaleY(1.0);
 }
 
 .footer__huge-text .spacer {
@@ -236,7 +250,7 @@ h1, h2, h3, h4, h5, h6 {
         font-size: 12vw;
         white-space: nowrap;
     }
-    .footer__huge-text span:hover {
+    .footer__huge-text .letter-wrap:hover .letter {
         transform: none;
     }
 }
