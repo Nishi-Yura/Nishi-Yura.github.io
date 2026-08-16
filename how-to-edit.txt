@@ -1,0 +1,39 @@
+■ ポートフォリオサイトの編集・追加方法
+
+このサイトは HTML, CSS, JavaScript という基本的なWeb技術で作られています。
+以下の手順で、テキストの変更や画像の挿入、新しいプロジェクトの追加が可能です。
+
+【1】テキストの変更方法
+1. 編集したいページ（例：about.html）を、メモ帳やVSCodeなどのテキストエディタで開きます。
+2. 「ここにプロフィール文が入ります。」などのダミーテキストを見つけ、ご自身の文章に書き換えます。
+3. 上書き保存してブラウザで更新（F5キー）すると反映されます。
+
+【2】画像の入れ方
+1. サイトのフォルダ内（index.htmlがある場所）に「images」という新しいフォルダを作ります。
+2. そこに表示したい画像（例：project1.jpg）を入れます。
+3. HTMLファイルを開き、「Image Placeholder」と書かれている <div> タグを <img> タグに置き換えます。
+
+変更前：
+<div class="project-card__image">Image Placeholder</div>
+
+変更後：
+<img src="images/project1.jpg" alt="プロジェクト1" class="project-card__image">
+
+※ project-detail.html の project-hero（一番上の大きな画像）も同様に <img> タグに置き換えてください。
+変更後：
+<img src="images/project1-hero.jpg" alt="プロジェクト1の詳細" class="project-hero">
+
+
+【3】Project（実績）の追加方法
+
+■ トップのプロジェクト一覧（projects.html）への追加
+1. projects.html を開きます。
+2. <!-- Project 1 --> から </a> までのブロックをコピーし、その下に貼り付けます。
+3. リンク先（href="project-detail.html"）、画像、タイトル（Project Name）、カテゴリーの文字を新しいものに書き換えます。
+
+■ 個別のプロジェクトページ（Projectの中のページ）の作り方
+1. 「project-detail.html」ファイルをコピーして、新しいファイル（例：project-02.html）を作ります。
+2. 新しいファイル（project-02.html）を開き、タイトル、大きな画像、説明文などを書き換えます。
+3. projects.html の該当プロジェクトのリンク先（href="project-detail.html"）を、新しく作った「project-02.html」に変更します。
+
+これでどんどん実績を追加していくことができます！

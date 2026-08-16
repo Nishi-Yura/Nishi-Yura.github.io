@@ -1,0 +1,5 @@
+title: Nishimoto Yura - Portfolio
+description: The personal portfolio of Nishimoto Yura.
+# This prevents GitHub Pages from using Jekyll to build the site, 
+# ensuring our custom HTML/CSS is served exactly as written.
+include: [".*"]

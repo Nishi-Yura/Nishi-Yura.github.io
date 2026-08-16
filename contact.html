@@ -1,0 +1,122 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CONTACT | Portfolio</title>
+    <meta name="description" content="お問い合わせはこちらから。">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .contact-content {
+            margin-top: 6rem;
+            max-width: 800px;
+        }
+        .contact-message {
+            font-size: 1.2rem;
+            line-height: 2;
+            margin-bottom: 4rem;
+            color: #333;
+        }
+        .contact-form {
+            width: 100%;
+        }
+        .form-group {
+            margin-bottom: 3rem;
+        }
+        .form-label {
+            display: block;
+            margin-bottom: 1rem;
+            font-weight: 300;
+            letter-spacing: 0.1em;
+            font-size: 1.1rem;
+        }
+        .form-input, .form-textarea {
+            width: 100%;
+            padding: 1rem 0;
+            border: none;
+            border-bottom: 1px solid #ddd;
+            background: transparent;
+            font-family: inherit;
+            font-size: 1.2rem;
+            transition: border-color 0.3s ease;
+        }
+        .form-input:focus, .form-textarea:focus {
+            outline: none;
+            border-bottom-color: #1a1a1a;
+        }
+        .form-textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .form-submit {
+            display: inline-block;
+            padding: 1rem 4rem;
+            background-color: transparent;
+            color: #1a1a1a;
+            border: 1px solid #1a1a1a;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+        .form-submit:hover {
+            background-color: #1a1a1a;
+            color: #ffffff;
+        }
+        @media screen and (max-width: 768px) {
+            .contact-message {
+                font-size: 1rem;
+            }
+            .form-submit {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+<script>if(!sessionStorage.getItem('introSeen')){document.documentElement.classList.add('intro-active');}</script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="projects.html" class="nav__link">PROJECT</a></li>
+                    <li><a href="about.html" class="nav__link">ABOUT</a></li>
+                    <li><a href="contact.html" class="nav__link">CONTACT</a></li>
+                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link">X/TWITTER</a></li>
+                </ul>
+            </nav>
+            <div class="header__logo"><a href="index.html">Nishimoto Yura</a></div>
+        </div>
+    </header>
+
+    <main class="page-top-padding">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title fade-in">CONTACT</h1>
+                
+                <div class="contact-content">
+                    <p class="contact-message fade-in" style="font-size: 1.5rem; line-height: 2.5;">
+                        お問い合わせは、以下のメールアドレスまたはX（Twitter）のDMまでお気軽にご連絡ください。<br><br>
+                        <strong>Email:</strong> <a href="mailto:nishimoto.yura@gmail.com" style="color: #1a1a1a; text-decoration: underline;">nishimoto.yura@gmail.com</a><br>
+                        <strong>X (Twitter):</strong> <a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" style="color: #1a1a1a; text-decoration: underline;">@46nek_0</a>
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top fade-in">
+            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+        </div>
+        <div class="footer__huge-text fade-in">
+            <span>N</span><span>I</span><span>S</span><span>H</span><span>I</span><span>M</span><span>O</span><span>T</span><span>O</span>
+            <span class="spacer"></span>
+            <span>Y</span><span>U</span><span>R</span><span>A</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

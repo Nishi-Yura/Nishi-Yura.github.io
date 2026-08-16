@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ABOUT | Portfolio</title>
+    <meta name="description" content="プロフィールやこれまでの経歴について。">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .about-content {
+            margin-top: 6rem;
+            font-size: 1.2rem;
+            line-height: 2;
+            max-width: 900px;
+        }
+        .about-content h2 {
+            font-size: 3.2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            letter-spacing: 0.1em;
+        }
+        .about-content p {
+            margin-bottom: 3rem;
+            color: #333;
+        }
+        .skills-section {
+            margin-top: 6rem;
+        }
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .skills-list li {
+            font-size: 1.2rem;
+            letter-spacing: 0.1em;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #1a1a1a;
+        }
+        .event-section {
+            margin-top: 6rem;
+        }
+        .event-section h3 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            letter-spacing: 0.05em;
+            border-left: 3px solid #1a1a1a;
+            padding-left: 1rem;
+        }
+        .event-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 4rem;
+        }
+        .event-list li {
+            font-size: 1.1rem;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            align-items: baseline;
+            gap: 2rem;
+            color: #333;
+        }
+        .event-year {
+            font-family: monospace;
+            font-size: 1.2rem;
+            color: #888;
+        }
+        .event-name {
+            flex: 1;
+        }
+        .interview-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1.5rem 2rem;
+            background-color: #f8f8f8;
+            border: 1px solid #eee;
+            margin-top: 2rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #1a1a1a;
+            width: 100%;
+        }
+        .interview-link:hover {
+            background-color: #1a1a1a;
+            color: #fff;
+            opacity: 1;
+        }
+        .interview-link strong {
+            font-size: 1.2rem;
+            letter-spacing: 0.05em;
+        }
+        .interview-link span {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        @media screen and (max-width: 768px) {
+            .about-content h2 {
+                font-size: 2.5rem;
+            }
+            .about-content {
+                font-size: 1rem;
+            }
+            .skills-list li {
+                font-size: 1rem;
+            }
+            .interview-link {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+            }
+        }
+    </style>
+<script>if(!sessionStorage.getItem('introSeen')){document.documentElement.classList.add('intro-active');}</script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="projects.html" class="nav__link">PROJECT</a></li>
+                    <li><a href="about.html" class="nav__link">ABOUT</a></li>
+                    <li><a href="contact.html" class="nav__link">CONTACT</a></li>
+                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link">X/TWITTER</a></li>
+                </ul>
+            </nav>
+            <div class="header__logo"><a href="index.html">Nishimoto Yura</a></div>
+        </div>
+    </header>
+
+    <main class="page-top-padding">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title fade-in">ABOUT</h1>
+                <div class="about-content fade-in">
+                    <h2>西本 ゆら <span style="font-size: 1.2rem; color: #888; font-weight: 300; letter-spacing: 0.05em; margin-left: 1rem;">Nishimoto Yura</span></h2>
+                    <p>
+                        自己紹介をかく
+                    </p>
+                    
+                    <a href="https://e4watch.net/posts/260421_revatiinterview/" target="_blank" rel="noopener noreferrer" class="interview-link fade-in">
+                        <strong>INTERVIEW ARTICLE</strong>
+                        <span>e4watch.net - チーム設立に関するインタビュー記事</span>
+                    </a>
+                </div>
+
+                <div class="event-section fade-in">
+                    <h3>招待いただいたイベント</h3>
+                    <ul class="event-list">
+                        <li>
+                            <span class="event-year">2024.08</span>
+                            <span class="event-name">test</span>
+                        </li>
+                    </ul>
+
+                    <h3>スタッフとして参加したイベント</h3>
+                    <ul class="event-list">
+                        <li>
+                            <span class="event-year">2024.05</span>
+                            <span class="event-name">test</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top fade-in">
+            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+        </div>
+        <div class="footer__huge-text fade-in">
+            <span>N</span><span>I</span><span>S</span><span>H</span><span>I</span><span>M</span><span>O</span><span>T</span><span>O</span>
+            <span class="spacer"></span>
+            <span>Y</span><span>U</span><span>R</span><span>A</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

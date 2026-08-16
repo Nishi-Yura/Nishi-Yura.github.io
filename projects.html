@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PROJECT | Portfolio</title>
+    <meta name="description" content="これまでの制作実績やプロジェクトを掲載しています。">
+    <link rel="stylesheet" href="css/style.css">
+<script>if(!sessionStorage.getItem('introSeen')){document.documentElement.classList.add('intro-active');}</script>
+</head>
+<body>
+    <header class="header">
+        <div class="container header__inner">
+            <nav class="nav">
+                <ul class="nav__list">
+                    <li><a href="projects.html" class="nav__link">PROJECT</a></li>
+                    <li><a href="about.html" class="nav__link">ABOUT</a></li>
+                    <li><a href="contact.html" class="nav__link">CONTACT</a></li>
+                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link">X/TWITTER</a></li>
+                </ul>
+            </nav>
+            <div class="header__logo"><a href="index.html">Nishimoto Yura</a></div>
+        </div>
+    </header>
+
+    <main class="page-top-padding">
+        <section class="section">
+            <div class="container">
+                <h1 class="section-title fade-in">PROJECT</h1>
+                <div class="projects-grid">
+                    <!-- Project 1 -->
+                    <a href="project-revati.html" class="project-card fade-in">
+                        <img src="images/revati-hero.png" alt="REVATI" class="project-card__image" style="background-color: #154c83; object-fit: contain;">
+                        <h2 class="project-card__title">REVATI</h2>
+                        <p class="project-card__category">esports Team</p>
+                    </a>
+                    <!-- Project 2 -->
+                    <a href="project-studio.html" class="project-card fade-in" style="transition-delay: 0.1s;">
+                        <img src="images/studio-hero.png" alt="REVATI Studio" class="project-card__image" style="background-color: #1a1a1a; object-fit: contain; ">
+                        <h2 class="project-card__title">REVATI Studio</h2>
+                        <p class="project-card__category">Creative Studio</p>
+                    </a>
+                    <!-- Project 3 -->
+                    <a href="project-coaching.html" class="project-card fade-in" style="transition-delay: 0.2s;">
+                        <img src="images/coaching-hero.jpg" alt="【NG×REV】Overwatch2 コーチング" class="project-card__image" style="object-fit: cover;">
+                        <h2 class="project-card__title">【NG×REV】OW2 Coaching</h2>
+                        <p class="project-card__category">Coaching Service</p>
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="footer__top fade-in">
+            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+        </div>
+        <div class="footer__huge-text fade-in">
+            <span>N</span><span>I</span><span>S</span><span>H</span><span>I</span><span>M</span><span>O</span><span>T</span><span>O</span>
+            <span class="spacer"></span>
+            <span>Y</span><span>U</span><span>R</span><span>A</span>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
