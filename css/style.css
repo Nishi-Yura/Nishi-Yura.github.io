@@ -80,10 +80,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .page-top-padding {
-    padding-top: 160px;
+    padding-top: 100px;
 }
 .page-top-padding .section:first-child {
-    padding-top: 6rem;
+    padding-top: 4rem;
 }
 
 /* ==========================================================================
@@ -268,7 +268,7 @@ h1, h2, h3, h4, h5, h6 {
     }
     
     .page-top-padding .section:first-child {
-        padding-top: 4rem;
+        padding-top: 2rem;
     }
 
     .project-hero-content {
