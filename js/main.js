@@ -4,8 +4,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (document.documentElement.classList.contains('intro-active')) {
         document.body.insertAdjacentHTML('afterbegin', `
             <div class="intro-screen">
-                <div class="intro-image-wrapper">
-                    <img src="images/ogp.jpg" alt="Nishimoto Yura" class="intro-image">
+                <div class="intro-text">
+                    <span class="intro-text-line"><span class="intro-text-inner">NISHIMOTO</span></span>
+                    <span class="intro-text-line"><span class="intro-text-inner">YURA</span></span>
                 </div>
             </div>
         `);

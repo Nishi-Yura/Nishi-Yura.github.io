@@ -615,21 +615,30 @@ html.intro-active body > *:not(.intro-screen):not(script) {
     transform: translateY(-100%);
 }
 
-.intro-image-wrapper {
-    overflow: hidden;
+.intro-text {
+    font-size: clamp(3rem, 10vw, 8rem);
+    font-weight: 200;
+    letter-spacing: 0.1em;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    width: 80%;
-    max-width: 600px;
+    line-height: 1.1;
 }
 
-.intro-image {
-    width: 100%;
-    height: auto;
-    transform: translateY(20px);
+.intro-text-line {
+    overflow: hidden;
+    display: block;
+}
+
+.intro-text-inner {
+    display: block;
+    transform: translateY(100%);
     opacity: 0;
     animation: slideUpIntro 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+.intro-text-line:nth-child(2) .intro-text-inner {
+    animation-delay: 0.15s;
 }
 
 @keyframes slideUpIntro {
