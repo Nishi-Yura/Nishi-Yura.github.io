@@ -1,5 +1,5 @@
-title: Nishimoto Yura - Portfolio
-description: The personal portfolio of Nishimoto Yura.
-# This prevents GitHub Pages from using Jekyll to build the site, 
-# ensuring our custom HTML/CSS is served exactly as written.
+title: 西本ゆら - ポートフォリオ
+description: 西本ゆらの個人ポートフォリオサイトです。
+# この設定はGitHub PagesがJekyllを使用してサイトをビルドするのを防ぎます。
+# これにより、作成したオリジナルのHTML/CSSがそのまま配信されるようになります。
 include: [".*"]
