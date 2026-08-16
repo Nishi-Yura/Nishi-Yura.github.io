@@ -223,7 +223,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer__huge-text .letter-wrap:hover .letter {
-    transform: scaleY(1.4);
+    transform: scaleY(1.0);
 }
 
 .footer__huge-text .spacer {
@@ -232,7 +232,7 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (max-width: 768px) {
     .footer {
-        padding: 6rem 0 1rem 0;
+        padding: 6rem 0 0 0;
     }
     .footer__top {
         margin-bottom: 4rem;
