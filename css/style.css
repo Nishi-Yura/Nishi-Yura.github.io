@@ -643,10 +643,6 @@ html.intro-active body > *:not(.intro-screen):not(script) {
    Custom Cursor
    ========================================================================== */
 @media (pointer: fine) {
-    html, body, a, button, .footer__huge-text span {
-        cursor: none !important;
-    }
-
     .cursor-dot {
         position: fixed;
         top: 0;
