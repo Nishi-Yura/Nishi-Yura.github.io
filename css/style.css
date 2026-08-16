@@ -156,7 +156,7 @@ h1, h2, h3, h4, h5, h6 {
    Footer
    ========================================================================== */
 .footer {
-    padding: 6rem 0 4rem 0;
+    padding: 6rem 0 0 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -218,7 +218,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer__huge-text span:hover {
-    transform: scaleY(1.0);
+    transform: scaleY(1.4);
 }
 
 .footer__huge-text .spacer {
@@ -227,13 +227,14 @@ h1, h2, h3, h4, h5, h6 {
 
 @media screen and (max-width: 768px) {
     .footer {
-        padding: 6rem 0 4rem 0;
+        padding: 6rem 0 1rem 0;
     }
     .footer__top {
         margin-bottom: 4rem;
     }
     .footer__huge-text {
-        font-size: 14.5vw;
+        font-size: 12vw;
+        white-space: nowrap;
     }
     .footer__huge-text span:hover {
         transform: none;
