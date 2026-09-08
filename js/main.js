@@ -1,28 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     
-    // 0. Intro Animation
-    if (document.documentElement.classList.contains('intro-active')) {
-        document.body.insertAdjacentHTML('afterbegin', `
-            <div class="intro-screen">
-                <div class="intro-text">
-                    <span class="intro-text-line"><span class="intro-text-inner">NISHIMOTO</span></span>
-                    <span class="intro-text-line"><span class="intro-text-inner">YURA</span></span>
-                </div>
-            </div>
-        `);
-        
-        sessionStorage.setItem('introSeen', 'true');
-        const introScreen = document.querySelector('.intro-screen');
-
-        setTimeout(() => {
-            document.documentElement.classList.remove('intro-active');
-            introScreen.classList.add('is-hidden');
-            setTimeout(() => {
-                introScreen.remove();
-            }, 800);
-        }, 1800);
-    }
-
+    
     // 1. Header scroll effect
     const header = document.querySelector('.header');
     let lastScrollY = window.scrollY;
