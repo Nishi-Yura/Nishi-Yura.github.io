@@ -152,8 +152,12 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     width: 0;
     height: 1px;
-    background-color: #1a1a1a;
+    background-color: #154c83;
     transition: width 0.3s ease;
+}
+
+.nav__link:hover {
+    opacity: 1;
 }
 
 .nav__link:hover::after,
@@ -341,6 +345,9 @@ h1, h2, h3, h4, h5, h6 {
 .project-card {
     display: block;
 }
+.project-card:hover {
+    opacity: 1;
+}
 .project-card__image {
     width: 100%;
     height: auto;
@@ -354,18 +361,42 @@ h1, h2, h3, h4, h5, h6 {
 .project-card__image--revati { background-color: #154c83; object-fit: contain; }
 .project-card__image--studio { background-color: #1a1a1a; object-fit: contain; }
 .project-card__image--cover { object-fit: cover; }
-.project-card:hover .project-card__image {
+.project-card:hover .project-card__image,
+.project-card:focus-visible .project-card__image {
     transform: scale(1.02);
+    filter: brightness(1.08);
 }
 .project-card__title {
     font-size: 1.4rem;
     font-weight: 300;
     margin-bottom: 0.5rem;
     letter-spacing: 0.05em;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+.project-card__title::after {
+    content: '→';
+    font-size: 1.1rem;
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+}
+.project-card:hover .project-card__title::after,
+.project-card:focus-visible .project-card__title::after {
+    opacity: 1;
+    transform: translateX(0);
+}
+.project-card__desc {
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    line-height: 1.7;
+    color: #444;
+    letter-spacing: 0.03em;
 }
 .project-card__category {
     font-size: 1rem;
-    color: #888;
+    color: #666;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -468,7 +499,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .project-info__category {
     font-size: 1.1rem;
-    color: #888;
+    color: #666;
     letter-spacing: 0.05em;
     font-weight: 400;
 }
@@ -538,7 +569,7 @@ h1, h2, h3, h4, h5, h6 {
 .history-year {
     font-family: monospace;
     font-size: 1.1rem;
-    color: #888;
+    color: #666;
     min-width: 80px;
 }
 .history-name {
@@ -632,7 +663,7 @@ h1, h2, h3, h4, h5, h6 {
 .next-work__label {
     font-size: 0.8rem;
     letter-spacing: 0.15em;
-    color: #888;
+    color: #666;
 }
 .next-work__title {
     font-size: 1.6rem;
@@ -641,7 +672,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .next-work__category {
     font-size: 0.85rem;
-    color: #888;
+    color: #666;
     text-transform: uppercase;
     letter-spacing: 0.1em;
 }
@@ -651,6 +682,21 @@ h1, h2, h3, h4, h5, h6 {
     vertical-align: -2px;
 }
 
+.back-link:hover {
+    opacity: 1;
+    border-bottom-color: #154c83;
+    color: #154c83;
+}
+.next-work:hover {
+    opacity: 1;
+}
+.next-work:hover .next-work__label {
+    color: #154c83;
+    letter-spacing: 0.22em;
+}
+.next-work__label {
+    transition: color 0.3s ease, letter-spacing 0.3s ease;
+}
 .back-link {
     display: inline-block;
     margin-top: 5rem;

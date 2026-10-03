@@ -15,10 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
             header.classList.remove('scrolled');
         }
 
-        // Hide/Show header based on direction
-        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        // Hide on a clear downward scroll, show on any upward scroll
+        const delta = currentScrollY - lastScrollY;
+        if (delta > 12 && currentScrollY > 300) {
             header.classList.add('header--hidden');
-        } else {
+        } else if (delta < -4 || currentScrollY <= 100) {
             header.classList.remove('header--hidden');
         }
 
