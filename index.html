@@ -4,15 +4,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>西本ゆら | Portfolio</title>
+    <meta name="description" content="西本ゆらのポートフォリオ。eスポーツチーム「REVATI」やクリエイティブスタジオ「REVATI Studio」の運営実績を掲載しています。">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="canonical" href="https://nishi-yura.github.io/">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="西本ゆら | Portfolio">
     <meta property="og:title" content="西本ゆら | Portfolio">
-    <meta property="og:description" content="西本ゆらの個人ポートフォリオサイトです。">
+    <meta property="og:description" content="西本ゆらのポートフォリオ。eスポーツチーム「REVATI」やクリエイティブスタジオ「REVATI Studio」の運営実績を掲載しています。">
     <meta property="og:image" content="https://nishi-yura.github.io/images/ogp.jpg">
     <meta property="og:url" content="https://nishi-yura.github.io/">
     <meta name="twitter:card" content="summary_large_image">
-
-    <meta name="description" content="これまでのプロジェクトを掲載しています。">
+    <meta name="twitter:title" content="西本ゆら | Portfolio">
+    <meta name="twitter:description" content="西本ゆらのポートフォリオ。eスポーツチーム「REVATI」やクリエイティブスタジオ「REVATI Studio」の運営実績を掲載しています。">
+    <meta name="twitter:image" content="https://nishi-yura.github.io/images/ogp.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body>
     <header class="header">
@@ -22,7 +32,7 @@
                     <li><a href="index.html" class="nav__link">WORKS</a></li>
                     <li><a href="about.html" class="nav__link">ABOUT</a></li>
                     <li><a href="contact.html" class="nav__link">CONTACT</a></li>
-                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link">X<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; vertical-align: -2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
+                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link" aria-label="X (新しいタブで開く)">X<svg class="nav__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
                 </ul>
             </nav>
             <div class="header__logo"><a href="index.html">Nishimoto Yura</a></div>
@@ -36,19 +46,19 @@
                 <div class="projects-grid">
                     <!-- Project 1 -->
                     <a href="project-revati.html" class="project-card fade-in">
-                        <img src="images/revati-hero.png" alt="REVATI" class="project-card__image" style="background-color: #154c83; object-fit: contain;">
+                        <img src="images/revati-hero.png" alt="REVATI" class="project-card__image project-card__image--revati" width="1920" height="1080">
                         <h2 class="project-card__title">REVATI</h2>
                         <p class="project-card__category">esports Team</p>
                     </a>
                     <!-- Project 2 -->
-                    <a href="project-studio.html" class="project-card fade-in" style="transition-delay: 0.1s;">
-                        <img src="images/studio-hero.png" alt="REVATI Studio" class="project-card__image" style="background-color: #1a1a1a; object-fit: contain; ">
+                    <a href="project-studio.html" class="project-card fade-in delay-1">
+                        <img src="images/studio-hero.png" alt="REVATI Studio" class="project-card__image project-card__image--studio" width="1920" height="1080" loading="lazy">
                         <h2 class="project-card__title">REVATI Studio</h2>
                         <p class="project-card__category">Creative Studio</p>
                     </a>
                     <!-- Project 3 -->
-                    <a href="project-coaching.html" class="project-card fade-in" style="transition-delay: 0.2s;">
-                        <img src="images/coaching-hero.jpg" alt="【NG×REV】Overwatch2 コーチング" class="project-card__image" style="object-fit: cover;">
+                    <a href="project-coaching.html" class="project-card fade-in delay-2">
+                        <img src="images/coaching-hero.jpg" alt="【NG×REV】Overwatch2 コーチング" class="project-card__image project-card__image--cover" width="1024" height="576" loading="lazy">
                         <h2 class="project-card__title">【NG×REV】OW2 Coaching</h2>
                         <p class="project-card__category">Coaching Service</p>
                     </a>
@@ -59,9 +69,9 @@
 
     <footer class="footer">
         <div class="footer__top fade-in">
-            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+            <button type="button" class="back-to-top" aria-label="ページの先頭へ戻る">↑</button>
         </div>
-        <div class="footer__huge-text fade-in">
+        <div class="footer__huge-text fade-in" role="img" aria-label="NISHIMOTO YURA">
             <span class="letter-wrap"><span class="letter">N</span></span><span class="letter-wrap"><span class="letter">I</span></span><span class="letter-wrap"><span class="letter">S</span></span><span class="letter-wrap"><span class="letter">H</span></span><span class="letter-wrap"><span class="letter">I</span></span><span class="letter-wrap"><span class="letter">M</span></span><span class="letter-wrap"><span class="letter">O</span></span><span class="letter-wrap"><span class="letter">T</span></span><span class="letter-wrap"><span class="letter">O</span></span>
             <span class="spacer"></span>
             <span class="letter-wrap"><span class="letter">Y</span></span><span class="letter-wrap"><span class="letter">U</span></span><span class="letter-wrap"><span class="letter">R</span></span><span class="letter-wrap"><span class="letter">A</span></span>

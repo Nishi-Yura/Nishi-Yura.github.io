@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
-    
-    
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
     // 1. Header scroll effect
     const header = document.querySelector('.header');
     let lastScrollY = window.scrollY;
@@ -56,14 +56,28 @@ document.addEventListener('DOMContentLoaded', () => {
         // If the current path matches the href, add active class
         if (linkHref === currentLocation || (currentLocation === '' && linkHref === 'index.html')) {
             link.classList.add('active');
+            link.setAttribute('aria-current', 'page');
         }
     });
+
+    // Back to top button
+    const backToTop = document.querySelector('.back-to-top');
+    if (backToTop) {
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? 'auto' : 'smooth' });
+        });
+    }
 
     // 4. Page Transition Animation (Exit)
     const linksForTransition = document.querySelectorAll('a[href]');
     linksForTransition.forEach(link => {
         link.addEventListener('click', (e) => {
             const target = link.getAttribute('href');
+
+            // 修飾キー付き・中クリックなど（新規タブで開く操作）は通常動作
+            if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || prefersReducedMotion) {
+                return;
+            }
             
             // 外部リンク、ページ内リンク、別タブリンクは通常動作
             if (target.startsWith('#') || link.getAttribute('target') === '_blank' || target.startsWith('http') || target.startsWith('mailto:')) {
@@ -87,7 +101,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // 5. Custom Cursor
-    if (window.matchMedia("(pointer: fine)").matches) {
+    if (window.matchMedia("(pointer: fine)").matches && !prefersReducedMotion) {
         if (!document.querySelector('.cursor-dot')) {
             document.body.insertAdjacentHTML('beforeend', '<div class="cursor-dot"></div><div class="cursor-outline"></div>');
         }

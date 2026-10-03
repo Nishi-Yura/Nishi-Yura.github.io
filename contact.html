@@ -3,72 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CONTACT | Portfolio</title>
-    <meta property="og:title" content="西本ゆら | Portfolio">
-    <meta property="og:description" content="西本ゆらの個人ポートフォリオサイトです。">
+    <title>CONTACT | 西本ゆら</title>
+    <meta name="description" content="西本ゆらへのお問い合わせ先です。">
+    <meta name="theme-color" content="#1a1a1a">
+    <link rel="canonical" href="https://nishi-yura.github.io/contact.html">
+    <meta property="og:type" content="article">
+    <meta property="og:site_name" content="西本ゆら | Portfolio">
+    <meta property="og:title" content="CONTACT | 西本ゆら">
+    <meta property="og:description" content="西本ゆらへのお問い合わせ先です。">
     <meta property="og:image" content="https://nishi-yura.github.io/images/ogp.jpg">
-    <meta property="og:url" content="https://nishi-yura.github.io/">
+    <meta property="og:url" content="https://nishi-yura.github.io/contact.html">
     <meta name="twitter:card" content="summary_large_image">
-
-    <meta name="description" content="お問い合わせはこちらから。">
+    <meta name="twitter:title" content="CONTACT | 西本ゆら">
+    <meta name="twitter:description" content="西本ゆらへのお問い合わせ先です。">
+    <meta name="twitter:image" content="https://nishi-yura.github.io/images/ogp.jpg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="css/style.css">
     <style>
-        .back-to-top { display: none; }
+        .footer__top { display: none; }
         .contact-content {
             margin-top: 6rem;
             max-width: 100%;
         }
         .contact-message {
-            font-size: 1.2rem;
-            line-height: 2;
+            font-size: 1.5rem;
+            line-height: 2.5;
             margin-bottom: 4rem;
             color: #333;
-        }
-        .contact-form {
-            width: 100%;
-        }
-        .form-group {
-            margin-bottom: 3rem;
-        }
-        .form-label {
-            display: block;
-            margin-bottom: 1rem;
-            font-weight: 300;
-            letter-spacing: 0.1em;
-            font-size: 1.1rem;
-        }
-        .form-input, .form-textarea {
-            width: 100%;
-            padding: 1rem 0;
-            border: none;
-            border-bottom: 1px solid #ddd;
-            background: transparent;
-            font-family: inherit;
-            font-size: 1.2rem;
-            transition: border-color 0.3s ease;
-        }
-        .form-input:focus, .form-textarea:focus {
-            outline: none;
-            border-bottom-color: #1a1a1a;
-        }
-        .form-textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-        .form-submit {
-            display: inline-block;
-            padding: 1rem 4rem;
-            background-color: transparent;
-            color: #1a1a1a;
-            border: 1px solid #1a1a1a;
-            font-size: 1.1rem;
-            letter-spacing: 0.1em;
-            cursor: pointer;
-            transition: all 0.4s ease;
-        }
-        .form-submit:hover {
-            background-color: #1a1a1a;
-            color: #ffffff;
         }
         @media screen and (max-width: 768px) {
             .contact-message {
@@ -81,6 +44,7 @@
         }
     </style>
     <link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 </head>
 <body>
     <header class="header">
@@ -90,7 +54,7 @@
                     <li><a href="index.html" class="nav__link">WORKS</a></li>
                     <li><a href="about.html" class="nav__link">ABOUT</a></li>
                     <li><a href="contact.html" class="nav__link">CONTACT</a></li>
-                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link">X<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="margin-left: 4px; vertical-align: -2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
+                    <li><a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="nav__link" aria-label="X (新しいタブで開く)">X<svg class="nav__icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></a></li>
                 </ul>
             </nav>
             <div class="header__logo"><a href="index.html">Nishimoto Yura</a></div>
@@ -103,9 +67,10 @@
                 <h1 class="section-title fade-in">CONTACT</h1>
                 
                 <div class="contact-content">
-                    <p class="contact-message fade-in" style="font-size: 1.5rem; line-height: 2.5;">
+                    <p class="contact-message fade-in">
                         お問い合わせは、以下のメールアドレスまたはXのDMまでお気軽にご連絡ください。<br><br>
-                        <strong>Email:</strong> <a href="mailto:nishimoto.yura@gmail.com" style="color: #1a1a1a; text-decoration: underline;">nishimoto.yura@gmail.com</a><br>
+                        <strong>Email:</strong> <a href="mailto:nishimoto.yura@gmail.com" class="link-underline">nishimoto.yura@gmail.com</a><br>
+                        <strong>X:</strong> <a href="https://x.com/46nek_0" target="_blank" rel="noopener noreferrer" class="link-underline">@46nek_0</a><br>
                     </p>
                 </div>
             </div>
@@ -114,9 +79,9 @@
 
     <footer class="footer">
         <div class="footer__top fade-in">
-            <a href="#" class="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'}); return false;">↑</a>
+            <button type="button" class="back-to-top" aria-label="ページの先頭へ戻る">↑</button>
         </div>
-        <div class="footer__huge-text fade-in">
+        <div class="footer__huge-text fade-in" role="img" aria-label="NISHIMOTO YURA">
             <span class="letter-wrap"><span class="letter">N</span></span><span class="letter-wrap"><span class="letter">I</span></span><span class="letter-wrap"><span class="letter">S</span></span><span class="letter-wrap"><span class="letter">H</span></span><span class="letter-wrap"><span class="letter">I</span></span><span class="letter-wrap"><span class="letter">M</span></span><span class="letter-wrap"><span class="letter">O</span></span><span class="letter-wrap"><span class="letter">T</span></span><span class="letter-wrap"><span class="letter">O</span></span>
             <span class="spacer"></span>
             <span class="letter-wrap"><span class="letter">Y</span></span><span class="letter-wrap"><span class="letter">U</span></span><span class="letter-wrap"><span class="letter">R</span></span><span class="letter-wrap"><span class="letter">A</span></span>
