@@ -593,6 +593,22 @@ h1, h2, h3, h4, h5, h6 {
     color: #666;
 }
 
+/* Tag list */
+.tag-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+}
+.tag-list li {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    padding: 0.4rem 0.9rem;
+    border: 1px solid #ccc;
+    border-radius: 999px;
+    color: #444;
+}
+
 /* Back / Next work navigation */
 .work-nav {
     display: flex;
