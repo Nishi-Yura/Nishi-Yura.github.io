@@ -29,10 +29,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // 2. Fade-in animation on scroll
     const fadeElements = document.querySelectorAll('.fade-in');
 
+    // threshold は 0 にする。背の高い要素に 0.15 などを使うと、画面の低い端末
+    // （横向きスマホなど）では「要素の15%」が一度に入りきらず、永久に表示されない。
     const observerOptions = {
         root: null,
-        rootMargin: '0px',
-        threshold: 0.15
+        rootMargin: '0px 0px -10% 0px',
+        threshold: 0
     };
 
     const observer = new IntersectionObserver((entries, observer) => {
@@ -48,18 +50,7 @@ document.addEventListener('DOMContentLoaded', () => {
         observer.observe(el);
     });
 
-    // 3. Set active nav link based on current page
-    const currentLocation = location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav__link');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        // If the current path matches the href, add active class
-        if (linkHref === currentLocation || (currentLocation === '' && linkHref === 'index.html')) {
-            link.classList.add('active');
-            link.setAttribute('aria-current', 'page');
-        }
-    });
+    // 3. 現在ページのナビ強調は _includes/header.html（Jekyll）側で付与している
 
     // Back to top button
     const backToTop = document.querySelector('.back-to-top');

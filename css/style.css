@@ -10,7 +10,7 @@
 }
 
 html {
-    font-size: 16px;
+    font-size: 100%;
     scroll-behavior: smooth;
 }
 
@@ -128,7 +128,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .header__logo a {
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 700;
     letter-spacing: 0.15em;
     text-transform: uppercase;
 }
@@ -268,13 +268,14 @@ h1, h2, h3, h4, h5, h6 {
 /* ==========================================================================
    Animations
    ========================================================================== */
-.fade-in {
+/* JS が有効な時だけ、表示前の要素を透明にする（JS無効でも本文が読める） */
+.js .fade-in {
     opacity: 0;
     transform: translateY(40px);
     transition: opacity 1.2s cubic-bezier(0.215, 0.61, 0.355, 1), transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
 }
 
-.fade-in.is-visible {
+.js .fade-in.is-visible {
     opacity: 1;
     transform: translateY(0);
 }
@@ -467,6 +468,9 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 0.9rem;
     color: #666;
     letter-spacing: 0.05em;
+}
+.project-info__meta a {
+    overflow-wrap: anywhere;
 }
 
 .project-info__meta--vertical {
@@ -730,8 +734,171 @@ h1, h2, h3, h4, h5, h6 {
     .project-info__title {
         font-size: 2.5rem;
     }
+    /* ヒーロー画像の上に重ねると収まらないので、画像の下に通常配置する */
+    .project-hero-wrapper {
+        aspect-ratio: auto;
+        background-color: transparent;
+    }
     .project-hero {
-        aspect-ratio: 16/9;
+        aspect-ratio: 16 / 9;
+        background-color: #1a1a1a;
+    }
+    .project-hero-overlay {
+        display: none;
+    }
+    .project-hero-content {
+        position: static;
+        padding: 1.5rem 0 0;
+        color: inherit;
+    }
+    .project-hero-content .project-info__title {
+        color: #1a1a1a;
+    }
+    .project-hero-content .project-info__category {
+        color: #666;
+    }
+    .project-hero-content .project-info__meta {
+        color: #666;
+    }
+    .project-hero-content .project-info__meta a {
+        color: #1a1a1a;
+    }
+    .project-hero-content .meta-label {
+        width: 90px;
+    }
+}
+
+/* ==========================================================================
+   ABOUT (index.html)
+   ========================================================================== */
+.about-name-en {
+    font-size: 1.2rem;
+    color: #666;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    margin-left: 1rem;
+}
+.about-content {
+    margin-top: 6rem;
+    font-size: 1.2rem;
+    line-height: 2;
+    max-width: 900px;
+}
+.about-content h2 {
+    font-size: 3.2rem;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+}
+.about-content p {
+    margin-bottom: 3rem;
+    color: #333;
+}
+.event-section {
+    margin-top: 6rem;
+}
+.event-section h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+    margin-bottom: 2rem;
+    letter-spacing: 0.05em;
+    border-left: 3px solid #1a1a1a;
+    padding-left: 1rem;
+}
+.event-list {
+    list-style: none;
+    padding: 0;
+    margin-bottom: 4rem;
+}
+.event-list li {
+    font-size: 1.1rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid #eaeaea;
+    display: flex;
+    align-items: baseline;
+    gap: 2rem;
+    color: #333;
+}
+.event-year {
+    font-family: monospace;
+    font-size: 1.2rem;
+    color: #666;
+}
+.event-name {
+    flex: 1;
+}
+.interview-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background-color: #f8f8f8;
+    border: 1px solid #eee;
+    margin-top: 2rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #1a1a1a;
+    width: 100%;
+}
+.interview-link:hover {
+    background-color: #1a1a1a;
+    color: #fff;
+    opacity: 1;
+}
+.interview-link strong {
+    font-size: 1.2rem;
+    letter-spacing: 0.05em;
+}
+.interview-link span {
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+@media screen and (max-width: 768px) {
+    .about-name-en {
+        display: block;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+    .about-content {
+        font-size: 1rem;
+    }
+    .about-content h2 {
+        font-size: 2.5rem;
+    }
+    .interview-link {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
+
+/* ==========================================================================
+   CONTACT / 404
+   ========================================================================== */
+.page-contact .footer__top {
+    display: none;
+}
+.contact-content {
+    margin-top: 6rem;
+    max-width: 100%;
+}
+.contact-message {
+    font-size: 1.5rem;
+    line-height: 2.5;
+    margin-bottom: 4rem;
+    color: #333;
+}
+.not-found {
+    font-size: 1.2rem;
+    line-height: 2;
+    color: #333;
+    margin-top: 2rem;
+}
+
+@media screen and (max-width: 768px) {
+    .contact-message {
+        font-size: 1rem;
     }
 }
 

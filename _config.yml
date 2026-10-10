@@ -1,5 +1,18 @@
-title: 西本ゆら - ポートフォリオ
-description: 西本ゆらの個人ポートフォリオサイトです。
-# この設定はGitHub PagesがJekyllを使用してサイトをビルドするのを防ぎます。
-# これにより、作成したオリジナルのHTML/CSSがそのまま配信されるようになります。
-include: [".*"]
+# GitHub Pages (Jekyll) の設定
+# ヘッダー・フッターなどの共通部分は _layouts / _includes にまとめ、
+# 各ページは front matter（ファイル先頭の --- で囲んだ部分）で title などを指定します。
+title: 西本ゆら | Portfolio
+description: 西本ゆらのポートフォリオ。eスポーツチーム「REVATI」やクリエイティブスタジオ「REVATI Studio」の運営実績を掲載しています。
+url: "https://nishi-yura.github.io"
+lang: ja
+timezone: Asia/Tokyo
+
+plugins:
+  - jekyll-redirect-from
+
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - node_modules

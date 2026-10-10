@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    <meta name="theme-color" content="#ffffff">
+{% if page.noindex %}    <meta name="robots" content="noindex">
+{% else %}    <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+    <meta property="og:type" content="{{ page.og_type | default: 'article' }}">
+    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:description" content="{{ page.description | default: site.description }}">
+    <meta property="og:image" content="{{ site.url }}{{ page.og_image | default: '/images/ogp.jpg' }}">
+    <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ page.title }}">
+    <meta name="twitter:description" content="{{ page.description | default: site.description }}">
+    <meta name="twitter:image" content="{{ site.url }}{{ page.og_image | default: '/images/ogp.jpg' }}">
+{% endif %}    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Noto+Sans+JP:wght@300;400;500&display=swap">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    <script>document.documentElement.classList.add('js');</script>
+{% if page.url == '/' %}    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "西本ゆら",
+      "alternateName": "Nishimoto Yura",
+      "url": "{{ site.url }}/",
+      "jobTitle": "eスポーツチーム REVATI 代表",
+      "sameAs": [
+        "https://x.com/46nek_0",
+        "https://revati.jp/"
+      ]
+    }
+    </script>
+{% endif %}</head>
+<body{% if page.body_class %} class="{{ page.body_class }}"{% endif %}>
+    {% include header.html %}
+
+    <main class="page-top-padding">
+{{ content }}
+    </main>
+
+    {% include footer.html %}
+
+    <script src="/js/main.js"></script>
+</body>
+</html>
