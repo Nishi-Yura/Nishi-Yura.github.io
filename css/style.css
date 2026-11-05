@@ -214,16 +214,28 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     cursor: default;
+    --letter-stretch: 1.8; /* 通常時の縦の伸び率 */
 }
-
 
 .letter-wrap {
     display: inline-block;
     position: relative;
 }
+/* 当たり判定は「通常時（伸びた状態）の文字」の大きさで固定する。
+   文字そのものは判定に使わないので、ホバーで縮んでも判定は変わらず、
+   カーソル位置によって文字が上下にちらつくことがない。 */
+.footer__huge-text .letter-wrap::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: calc(var(--letter-stretch) * 100%);
+}
 .footer__huge-text .letter {
     display: inline-block;
-    transform: scaleY(1.8);
+    pointer-events: none;
+    transform: scaleY(var(--letter-stretch));
     transform-origin: bottom;
     transition: transform 0.3s cubic-bezier(0.165, 0.84, 0.44, 1), color 0.3s ease;
 }
