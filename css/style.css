@@ -929,6 +929,12 @@ h1, h2, h3, h4, h5, h6 {
 .page-contact .footer__top {
     display: none;
 }
+/* 「↑」ボタンがない分、縦に伸びた文字が上にはみ出してフッターで切れてしまう。
+   はみ出す量（伸びた行の高さの差＋字形の上端）を文字サイズ基準で確保する。
+   0.75 は .footer__huge-text の line-height。 */
+.page-contact .footer__huge-text {
+    margin-top: calc((var(--letter-stretch) - 1) * 0.75em + 0.15em);
+}
 .contact-content {
     margin-top: 6rem;
     max-width: 100%;
