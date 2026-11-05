@@ -395,6 +395,13 @@ h1, h2, h3, h4, h5, h6 {
     color: #444;
     letter-spacing: 0.03em;
 }
+.project-card__period {
+    margin-top: 0.3rem;
+    font-size: 0.8rem;
+    color: #666;
+    letter-spacing: 0.08em;
+    font-variant-numeric: tabular-nums;
+}
 .project-card__category {
     font-size: 1rem;
     color: #666;
@@ -810,8 +817,20 @@ h1, h2, h3, h4, h5, h6 {
     letter-spacing: 0.1em;
 }
 .about-content p {
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
     color: #333;
+}
+.about-roles {
+    margin-bottom: 3rem;
+    padding: 1.5rem 0;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #1a1a1a;
+}
+.about-roles li + li {
+    margin-top: 0.4rem;
 }
 .event-section {
     margin-top: 6rem;
