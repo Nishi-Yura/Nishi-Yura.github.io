@@ -1,6 +1,6 @@
-# Nishi-Yura Portfolio
+# 西本ゆら
 
-西本ゆらの個人ポートフォリオサイト。<https://nishi-yura.github.io/>
+西本ゆらの個人サイト。<https://nishi-yura.github.io/>
 
 HTML / CSS / JavaScript の静的サイトで、GitHub Pages 標準の Jekyll で配信しています。
 ヘッダー・フッター・`<head>` などの共通部分は `_layouts` / `_includes` に 1 か所だけ書き、各ページは本文だけを持ちます。
