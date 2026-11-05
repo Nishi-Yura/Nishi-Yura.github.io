@@ -628,6 +628,25 @@ h1, h2, h3, h4, h5, h6 {
     color: #666;
 }
 
+/* Status badge（サービス終了など） */
+.status-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    line-height: 1.4;
+    padding: 0.15rem 0.6rem;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    letter-spacing: 0.05em;
+    text-transform: none;
+    vertical-align: middle;
+    margin-left: 0.4rem;
+    white-space: nowrap;
+}
+.notice {
+    font-size: 0.9rem;
+    color: #666;
+}
+
 /* Tag list */
 .tag-list {
     display: flex;
