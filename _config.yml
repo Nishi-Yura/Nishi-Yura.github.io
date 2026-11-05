@@ -1,7 +1,7 @@
 # GitHub Pages (Jekyll) の設定
 # ヘッダー・フッターなどの共通部分は _layouts / _includes にまとめ、
 # 各ページは front matter（ファイル先頭の --- で囲んだ部分）で title などを指定します。
-title: 西本ゆら | Portfolio
+title: 西本ゆら
 description: 西本ゆらのポートフォリオ。eスポーツチーム「REVATI」やクリエイティブスタジオ「REVATI Studio」の運営実績を掲載しています。
 url: "https://nishi-yura.github.io"
 lang: ja
