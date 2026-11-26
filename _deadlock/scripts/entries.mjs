@@ -10,7 +10,7 @@ if (existsSync(entries)) rmSync(entries, { recursive: true })
 
 const esc = (s) => String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/"/g, "&quot;")
 
-const page = ({ title, description, report }) => `<!doctype html>
+const page = ({ title, description, report, depth }) => `<!doctype html>
 <html lang="ja">
 <head>
 <meta charset="utf-8">
@@ -27,7 +27,7 @@ const page = ({ title, description, report }) => `<!doctype html>
 <body>
 <div id="root"${report ? ` data-report="${report}"` : ""}></div>
 <noscript>このページは JavaScript で表示しています。</noscript>
-<script type="module" src="../../src/main.tsx"></script>
+<script type="module" src="${"../".repeat(depth + 1)}src/main.tsx"></script>
 </body>
 </html>
 `
@@ -40,15 +40,17 @@ const write = (dir, html) => {
 write("deadlock-report", page({
   title: "Deadlock レポート",
   description: "Deadlock の大会の決勝を、ドラフトとマッチデータで振り返るレポートの一覧。",
+  depth: 1,
 }))
 
 const files = readdirSync(join(root, "reports")).filter((f) => /^\d+\.json$/.test(f))
 for (const f of files) {
   const r = JSON.parse(readFileSync(join(root, "reports", f), "utf8"))
-  write(`deadlock-report-${r.id}`, page({
+  write(`deadlock-report/${r.id}`, page({
     title: `${r.title} | Deadlock レポート #${r.id}`,
     description: r.headline,
     report: r.id,
+    depth: 2,
   }))
 }
 console.log(`entries: 目次 + レポート ${files.length} 本`)

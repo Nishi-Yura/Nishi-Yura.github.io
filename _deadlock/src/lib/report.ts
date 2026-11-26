@@ -11,7 +11,7 @@ export function getReport(id: number): Report {
   return r
 }
 
-export const reportPath = (id: number) => `/deadlock-report-${id}/`
+export const reportPath = (id: number) => `/deadlock-report/${id}/`
 
 export const fmt = (n: number) => n.toLocaleString("en-US")
 

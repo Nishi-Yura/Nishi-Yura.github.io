@@ -1,5 +1,5 @@
 // 次のレポートのひな形を作る:  npm run new
-// reports/N.json と public/deadlock-report-N/img/ を作る。中身は README.md の手順で埋める。
+// reports/N.json と public/deadlock-report/N/img/ を作る。中身は README.md の手順で埋める。
 import { readdirSync, writeFileSync, mkdirSync, existsSync } from "node:fs"
 import { join, dirname } from "node:path"
 import { fileURLToPath } from "node:url"
@@ -33,5 +33,5 @@ const tpl = {
   sources: [{ label: "Deadlock API（マッチデータ）", url: "https://api.deadlock-api.com/" }],
 }
 writeFileSync(file, JSON.stringify(tpl, null, 2) + "\n")
-mkdirSync(join(root, "public", `deadlock-report-${id}`, "img"), { recursive: true })
-console.log(`作成: reports/${id}.json と public/deadlock-report-${id}/img/`)
+mkdirSync(join(root, "public", "deadlock-report", String(id), "img"), { recursive: true })
+console.log(`作成: reports/${id}.json と public/deadlock-report/${id}/img/`)

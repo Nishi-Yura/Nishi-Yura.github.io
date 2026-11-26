@@ -1,6 +1,6 @@
 # Deadlock レポートの作り方
 
-`https://nishi-yura.github.io/deadlock-report/`（目次）と `/deadlock-report-N/`（各レポート）を作るためのフォルダです。
+`https://nishi-yura.github.io/deadlock-report/`（目次）と `/deadlock-report/N/`（各レポート）を作るためのフォルダです。
 先頭が `_` なので、GitHub Pages（Jekyll）はこのフォルダを公開しません。ビルドした結果だけがサイト直下にコピーされます。
 
 デザインの決まりは [design/DESIGN.md](design/DESIGN.md)。見た目を変えるときは、先にそちらを直してください。
@@ -12,7 +12,7 @@
 ```
 _deadlock/
   reports/1.json            ← レポートの中身（ここだけ書けばページになる）
-  public/deadlock-report-1/img/   ← そのレポートで使う画像（配信のドラフト画面など）
+  public/deadlock-report/1/img/   ← そのレポートで使う画像（配信のドラフト画面など）
   src/                      ← 画面の部品（React + shadcn/ui + Magic UI）
   scripts/                  ← ビルド用のスクリプト
   design/                   ← DESIGN.md、参考サイトのスクショ、比較した3案
@@ -20,9 +20,11 @@ _deadlock/
 
 `npm run build` を実行すると：
 1. `reports/*.json` を全部読んで、目次とレポートのページを作る
-2. `../deadlock-report/`、`../deadlock-report-N/`、`../deadlock-assets/` をサイト直下に書き出す（他のページには触らない）
+2. `../deadlock-report/`（中に `1/`、`2/` …）と `../deadlock-assets/` をサイト直下に書き出す（他のページには触らない）
 
 あとは `git add` → `commit` → `push` で公開されます（反映まで1分ほど）。
+
+旧 URL の `/deadlock-report-1/` は、`/deadlock-report/1/` へ転送するだけのページとしてサイト直下に残しています。
 
 ---
 
@@ -40,7 +42,7 @@ npm install
 ```powershell
 npm run new
 ```
-`reports/N.json` と `public/deadlock-report-N/img/` ができます（N は自動で次の番号）。
+`reports/N.json` と `public/deadlock-report/N/img/` ができます（N は自動で次の番号）。
 
 ### ② 材料を集める
 | 欲しいもの | 取る場所 |
@@ -64,14 +66,14 @@ npm run new
 ```powershell
 npm run dev
 ```
-表示された URL の `/deadlock-report-N/` を開いて確認します。スマホ幅（375px）でも見る。
+表示された URL の `/deadlock-report/N/` を開いて確認します。スマホ幅（375px）でも見る。
 
 ### ⑤ 公開する
 ```powershell
 npm run build
 cd ..
-git add _deadlock deadlock-report deadlock-report-* deadlock-assets
-git commit -m "Add deadlock-report-N"
+git add _deadlock deadlock-report deadlock-assets
+git commit -m "Add Deadlock report N"
 git push
 ```
 

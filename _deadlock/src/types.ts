@@ -20,7 +20,7 @@ export interface MapData {
   /** "36:32" */
   duration: string
   matchId: number
-  /** public/deadlock-report-N/ からの相対パス */
+  /** public/deadlock-report/N/ からの相対パス */
   screenshot?: string
   screenshotNote?: string
   flow?: string

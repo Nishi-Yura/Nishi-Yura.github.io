@@ -4,12 +4,14 @@ import tailwindcss from "@tailwindcss/vite";
 import { readdirSync, existsSync } from "node:fs";
 import { resolve } from "node:path";
 
-// scripts/entries.mjs が作る entries/deadlock-report*/index.html を全部ビルド対象にする
+// scripts/entries.mjs が作る entries/deadlock-report/index.html と
+// entries/deadlock-report/N/index.html を全部ビルド対象にする
 const root = resolve(import.meta.dirname, "entries");
-const input: Record<string, string> = {};
-for (const dir of readdirSync(root)) {
-  const html = resolve(root, dir, "index.html");
-  if (existsSync(html)) input[dir] = html;
+const top = resolve(root, "deadlock-report");
+const input: Record<string, string> = { index: resolve(top, "index.html") };
+for (const dir of readdirSync(top)) {
+  const html = resolve(top, dir, "index.html");
+  if (existsSync(html)) input[`report-${dir}`] = html;
 }
 
 export default defineConfig({
