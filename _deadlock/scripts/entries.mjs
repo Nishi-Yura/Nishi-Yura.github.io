@@ -38,7 +38,7 @@ const write = (dir, html) => {
 }
 
 write("deadlock-report", page({
-  title: "Deadlock レポート | 西本ゆら",
+  title: "Deadlock レポート",
   description: "Deadlock の大会の決勝を、ドラフトとマッチデータで振り返るレポートの一覧。",
 }))
 
