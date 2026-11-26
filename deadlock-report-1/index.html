@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deadlock Night Shift #65 ビジュアルレポート</title>
+<style>
+  :root {
+    color-scheme: light;
+    --bg: #f6f7f9; --surface: #ffffff; --ink: #191919; --ink2: #5c5c5c; --line: #e3e5e8;
+    --win: #257de0; --win-soft: #e6f0fc; --lose: #f47230; --lose-soft: #fdece3; --neutral: #8a8f98;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root { color-scheme: dark; --bg:#111214; --surface:#1b1c1f; --ink:#efefef; --ink2:#a3a6ab; --line:#2c2e33;
+      --win:#338ced; --win-soft:#182a40; --lose:#e76624; --lose-soft:#3a2216; --neutral:#7d828b; }
+  }
+  * { box-sizing: border-box; }
+  body { margin:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Noto Sans JP",sans-serif; line-height:1.65; }
+  .wrap { max-width: 960px; margin: 0 auto; padding: 28px 18px 64px; }
+  h1 { font-size: 26px; margin: 0 0 4px; }
+  h2 { font-size: 20px; margin: 44px 0 6px; }
+  h3 { font-size: 15px; margin: 0; }
+  .sub { color: var(--ink2); font-size: 13px; }
+  .card { background:var(--surface); border:1px solid var(--line); border-radius:12px; padding:16px 18px; }
+  .grid2 { display:grid; grid-template-columns: 1fr 1fr; gap:14px; }
+  @media (max-width: 680px) { .grid2 { grid-template-columns: 1fr; } }
+  .legend { display:flex; gap:16px; font-size:13px; color:var(--ink2); margin:8px 0 0; flex-wrap:wrap; }
+  .sw { display:inline-block; width:12px; height:12px; border-radius:3px; vertical-align:-1px; margin-right:6px; }
+  .sw.win { background:var(--win); } .sw.lose { background:var(--lose); }
+
+  /* series cards */
+  .series .score { font-size: 40px; font-weight: 700; letter-spacing: 1px; }
+  .series .teams { display:flex; justify-content:space-between; align-items:baseline; gap:10px; }
+  .series .teams b { font-size: 16px; }
+  .strip { display:flex; gap:6px; margin-top:12px; }
+  .strip span { flex:1; text-align:center; font-size:12px; padding:6px 0; border-radius:6px; color:#fff; font-weight:600; }
+  .strip .w { background: var(--win); } .strip .l { background: var(--lose); }
+  .kills { margin-top:12px; font-size:13px; color:var(--ink2); }
+
+  /* draft cards */
+  .map { margin-top:14px; }
+  .map header { display:flex; justify-content:space-between; align-items:center; gap:10px; flex-wrap:wrap; margin-bottom:10px; }
+  .badge { font-size:12px; padding:2px 10px; border-radius:999px; border:1px solid var(--line); color:var(--ink2); }
+  .row { display:flex; align-items:center; gap:8px; margin:6px 0; flex-wrap:wrap; }
+  .team { width:120px; font-size:13px; font-weight:600; flex-shrink:0; }
+  .team small { display:block; font-weight:400; color:var(--ink2); }
+  .chip { font-size:13px; padding:3px 10px; border-radius:999px; border:1.5px solid; background:var(--surface); }
+  .row.w .chip { border-color:var(--win); background:var(--win-soft); }
+  .row.l .chip { border-color:var(--lose); background:var(--lose-soft); }
+  .chip.unk { border-style:dashed; color:var(--ink2); background:transparent !important; border-color:var(--neutral) !important; }
+  .shot { margin-top:10px; border-radius:8px; overflow:hidden; border:1px solid var(--line); }
+  .shot img { display:block; width:100%; height:auto; }
+  .bans { margin-top:12px; padding:10px 12px; border:1px dashed var(--line); border-radius:8px; }
+  .bans h4 { margin:0 0 6px; font-size:13px; }
+  .bans img { display:block; width:100%; max-width:560px; height:auto; border-radius:6px; background:#000; }
+  .bans .lbl { display:flex; max-width:560px; font-size:12px; color:var(--ink2); margin-bottom:4px; }
+  .bans .lbl span { flex:1; }
+  .row.b .chip { border-color:var(--neutral); border-style:dashed; background:transparent; color:var(--ink2); }
+  .row.b .team { color:var(--ink2); font-weight:500; }
+  .cap { font-size:12px; color:var(--ink2); margin-top:4px; }
+
+  /* bar charts */
+  .bars { margin-top:12px; }
+  .brow { display:grid; grid-template-columns: 110px 1fr 70px; align-items:center; gap:10px; margin:7px 0; font-size:13px; }
+  .track { display:flex; height:18px; gap:2px; }
+  .seg { height:100%; min-width:0; }
+  .seg.win { background:var(--win); border-radius:4px 0 0 4px; }
+  .seg.lose { background:var(--lose); border-radius:0 4px 4px 0; }
+  .seg.only { border-radius:4px; }
+  .val { color:var(--ink2); font-variant-numeric: tabular-nums; text-align:right; }
+  .pbar { display:grid; grid-template-columns: 80px 1fr 230px; align-items:center; gap:10px; margin:6px 0; font-size:13px; }
+  .pbar .fill { height:16px; border-radius:4px; }
+  .fill.win { background:var(--win); } .fill.lose { background:var(--lose); }
+  .pbar .note { color:var(--ink2); font-size:12px; font-variant-numeric: tabular-nums; }
+  .hot { font-weight:700; }
+
+  .take { display:grid; grid-template-columns: repeat(2,1fr); gap:12px; margin-top:12px; }
+  @media (max-width: 760px) { .take { grid-template-columns: 1fr; } }
+  .take .card h3 { margin-bottom:6px; }
+  .take .n { font-size:12px; color:var(--ink2); }
+  ul { margin: 8px 0 0; padding-left: 20px; } li { margin: 3px 0; }
+  .sbwrap { overflow-x:auto; margin-top:10px; }
+  table.sb { border-collapse:collapse; width:100%; font-size:13px; min-width:560px; }
+  table.sb th { text-align:right; font-weight:600; color:var(--ink2); font-size:12px; padding:4px 6px; border-bottom:1px solid var(--line); }
+  table.sb th:first-child, table.sb th:nth-child(2) { text-align:left; }
+  table.sb td { padding:5px 6px; border-bottom:1px solid var(--line); text-align:right; font-variant-numeric: tabular-nums; }
+  table.sb td:first-child, table.sb td:nth-child(2) { text-align:left; }
+  table.sb tr.tw td:first-child { border-left:4px solid var(--win); }
+  table.sb tr.tl td:first-child { border-left:4px solid var(--lose); }
+  table.sb tr.sep td { padding:0; border-bottom:2px solid var(--line); height:6px; }
+  .dmg { display:flex; align-items:center; gap:6px; justify-content:flex-end; }
+  .dmg i { display:block; height:8px; border-radius:3px; }
+  .dmg i.w { background:var(--win); } .dmg i.l { background:var(--lose); }
+  td.hi { font-weight:700; }
+  .mid { color:var(--ink2); font-size:12px; margin:2px 0 0; }
+  .foot { margin-top:40px; font-size:12px; color:var(--ink2); }
+  a { color: var(--win); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Deadlock Night Shift #65 ビジュアルレポート</h1>
+  <div class="sub">EU・NA の決勝（2026年11月18日開催）／出典は末尾のとおり</div>
+
+  <div class="grid2" style="margin-top:20px">
+    <div class="card series">
+      <div class="teams"><b>EU 決勝</b><span class="sub">Leviathan が優勝</span></div>
+      <div class="score">Leviathan 2 - 0 Buff Enjoyers</div>
+      <div class="strip"><span class="w">Map 1 Leviathan</span><span class="w">Map 2 Leviathan</span></div>
+      <div class="kills">シリーズ全体のキル：Leviathan 56 対 Buff Enjoyers 22</div>
+    </div>
+    <div class="card series">
+      <div class="teams"><b>NA 決勝</b><span class="sub">Cloud9 が優勝（DLNS 8連覇）</span></div>
+      <div class="score">Cloud9 2 - 1 YFP</div>
+      <div class="strip"><span class="w">Map 1 Cloud9</span><span class="l">Map 2 YFP</span><span class="w">Map 3 Cloud9</span></div>
+      <div class="kills">シリーズ全体のキル：Cloud9 75 対 YFP 73</div>
+    </div>
+  </div>
+  <div class="legend"><span><i class="sw win"></i>勝ったチーム側は青</span><span><i class="sw lose"></i>負けたチーム側はオレンジ</span><span>点線のタグは BAN</span></div>
+
+  <h2>1. ドラフトと BAN</h2>
+  <div class="sub">ヒーロー名はピック順です。</div>
+
+  <div class="card map">
+    <header><h3>EU 決勝 Map 1</h3><span class="badge">先行ピック：Leviathan</span></header>
+    <div class="row w"><div class="team">Leviathan<small>勝ち</small></div><span class="chip">Mina</span><span class="chip">Wraith</span><span class="chip">Mirage</span><span class="chip">Abrams</span><span class="chip">Solomon</span><span class="chip">Drifter</span></div>
+    <div class="row l"><div class="team">Buff Enjoyers<small>負け</small></div><span class="chip">Shiv</span><span class="chip">Holliday</span><span class="chip">Pocket</span><span class="chip">Billy</span><span class="chip">Lash</span><span class="chip">Rem</span></div>
+    <div class="row b"><div class="team">Leviathan<small>BAN</small></div><span class="chip">Ivy</span><span class="chip">Violet</span><span class="chip">Baba</span></div>
+    <div class="row b"><div class="team">Buff Enjoyers<small>BAN</small></div><span class="chip">Lady Geist</span><span class="chip">Paradox</span><span class="chip">Nurse Harrow</span></div>
+    <div class="shot"><img src="img/eu_m1.png" alt="EU 決勝 Map 1 のドラフト画面"></div>
+    <div class="cap">配信画面（左が Buff Enjoyers、右が Leviathan）</div>
+  </div>
+
+  <div class="card map">
+    <header><h3>EU 決勝 Map 2</h3><span class="badge">先行ピック：Buff Enjoyers／約21分・37-14</span></header>
+    <div class="row l"><div class="team">Buff Enjoyers<small>負け</small></div><span class="chip">Lady Geist</span><span class="chip">Wraith</span><span class="chip">Billy</span><span class="chip">Viscous</span><span class="chip">Haze</span><span class="chip">Grey Talon</span></div>
+    <div class="row w"><div class="team">Leviathan<small>勝ち</small></div><span class="chip">Mina</span><span class="chip">Holliday</span><span class="chip">Abrams</span><span class="chip">Rem</span><span class="chip">Ivy</span><span class="chip">Silver</span></div>
+    <div class="row b"><div class="team">Buff Enjoyers<small>BAN</small></div><span class="chip">Shiv</span><span class="chip">Mirage</span><span class="chip">Nurse Harrow</span></div>
+    <div class="row b"><div class="team">Leviathan<small>BAN</small></div><span class="chip">Violet</span><span class="chip">Paradox</span><span class="chip">Baba</span></div>
+    <div class="shot"><img src="img/eu_m2.png" alt="EU 決勝 Map 2 のドラフト画面"></div>
+    
+  </div>
+
+  <div class="card map">
+    <header><h3>NA 決勝 Map 1</h3><span class="badge">先行ピック：Cloud9</span></header>
+    <div class="row w"><div class="team">Cloud9<small>勝ち</small></div><span class="chip">Paradox</span><span class="chip">Billy</span><span class="chip">Mirage</span><span class="chip">Viscous</span><span class="chip">Ivy</span><span class="chip">Lash</span></div>
+    <div class="row l"><div class="team">YFP<small>負け</small></div><span class="chip">Holliday</span><span class="chip">Mina</span><span class="chip">Abrams</span><span class="chip">Violet</span><span class="chip">Venator</span><span class="chip">Kelvin</span></div>
+    <div class="row b"><div class="team">Cloud9<small>BAN</small></div><span class="chip">Wraith</span><span class="chip">Baba</span><span class="chip">Rem</span></div>
+    <div class="row b"><div class="team">YFP<small>BAN</small></div><span class="chip">Nurse Harrow</span><span class="chip">Lady Geist</span><span class="chip">Pocket</span></div>
+    <div class="shot"><img src="img/na_m1.png" alt="NA 決勝 Map 1 のドラフト画面"></div>
+    <div class="cap">配信画面（ピック確定後は、ヒーロー名ではなく選手名が表示されます）</div>
+  </div>
+
+  <div class="card map">
+    <header><h3>NA 決勝 Map 2</h3><span class="badge">先行ピック：Cloud9／32分25秒・33-8</span></header>
+    <div class="row l"><div class="team">Cloud9<small>負け</small></div><span class="chip">Lady Geist</span><span class="chip">Billy</span><span class="chip">Shiv</span><span class="chip">Rem</span><span class="chip">Ivy</span><span class="chip">Doorman</span></div>
+    <div class="row w"><div class="team">YFP<small>勝ち</small></div><span class="chip">Paradox</span><span class="chip">Mina</span><span class="chip">Abrams</span><span class="chip">Nurse Harrow</span><span class="chip">Venator</span><span class="chip">Kelvin</span></div>
+    <div class="row b"><div class="team">Cloud9<small>BAN</small></div><span class="chip">Baba</span><span class="chip">Holliday</span><span class="chip">Mirage</span></div>
+    <div class="row b"><div class="team">YFP<small>BAN</small></div><span class="chip">Violet</span><span class="chip">Wraith</span><span class="chip">Pocket</span></div>
+    <div class="shot"><img src="img/na_m2.png" alt="NA 決勝 Map 2 のドラフト画面"></div>
+    
+  </div>
+
+  <div class="card map">
+    <header><h3>NA 決勝 Map 3</h3><span class="badge">先行ピック：YFP</span></header>
+    <div class="row l"><div class="team">YFP<small>負け</small></div><span class="chip">Lady Geist</span><span class="chip">Mina</span><span class="chip">Abrams</span><span class="chip">Violet</span><span class="chip">Grey Talon</span><span class="chip">Viscous</span></div>
+    <div class="row w"><div class="team">Cloud9<small>勝ち</small></div><span class="chip">Wraith</span><span class="chip">Mirage</span><span class="chip">Billy</span><span class="chip">Rem</span><span class="chip">Yamato</span><span class="chip">Seven</span></div>
+    <div class="row b"><div class="team">YFP<small>BAN</small></div><span class="chip">Nurse Harrow</span><span class="chip">Holliday</span><span class="chip">Pocket</span></div>
+    <div class="row b"><div class="team">Cloud9<small>BAN</small></div><span class="chip">Paradox</span><span class="chip">Baba</span><span class="chip">Kelvin</span></div>
+    <div class="shot"><img src="img/na_m3.png" alt="NA 決勝 Map 3 のドラフト画面"></div>
+    
+  </div>
+
+  <h2>2. よく出たヒーローと勝敗</h2>
+  <div class="sub">5マップ分の集計です。サンプルが小さいので、傾向というより気づきとして見てください。2回以上使われたヒーローと、Lady Geist などの偏りがあるものを載せています。</div>
+  <div class="card bars">
+    <div class="legend" style="margin:0 0 8px"><span><i class="sw win"></i>そのヒーローを取って勝ったマップ</span><span><i class="sw lose"></i>取って負けたマップ</span></div>
+    <div class="brow"><span>Mina</span><div class="track" title="Mina：5回（3勝2敗）"><div class="seg win" style="flex:3"></div><div class="seg lose" style="flex:2"></div></div><span class="val">3勝2敗</span></div>
+    <div class="brow"><span>Abrams</span><div class="track" title="Abrams：5回（3勝2敗）"><div class="seg win" style="flex:3"></div><div class="seg lose" style="flex:2"></div></div><span class="val">3勝2敗</span></div>
+    <div class="brow"><span>Mirage</span><div class="track" title="Mirage：3回（3勝0敗）"><div class="seg win only" style="flex:3"></div></div><span class="val">3勝0敗</span></div>
+    <div class="brow"><span>Billy</span><div class="track" title="Billy：5回（2勝3敗）"><div class="seg win" style="flex:2"></div><div class="seg lose" style="flex:3"></div></div><span class="val">2勝3敗</span></div>
+    <div class="brow"><span>Rem</span><div class="track" title="Rem：4回（2勝2敗）"><div class="seg win" style="flex:2"></div><div class="seg lose" style="flex:2"></div></div><span class="val">2勝2敗</span></div>
+    <div class="brow"><span>Wraith</span><div class="track" title="Wraith：3回（2勝1敗）"><div class="seg win" style="flex:2"></div><div class="seg lose" style="flex:1"></div></div><span class="val">2勝1敗</span></div>
+    <div class="brow"><span>Ivy</span><div class="track" title="Ivy：3回（2勝1敗）"><div class="seg win" style="flex:2"></div><div class="seg lose" style="flex:1"></div></div><span class="val">2勝1敗</span></div>
+    <div class="brow"><span>Paradox</span><div class="track" title="Paradox：2回（2勝0敗）"><div class="seg win only" style="flex:2"></div></div><span class="val">2勝0敗</span></div>
+    <div class="brow"><span>Holliday</span><div class="track" title="Holliday：3回（1勝2敗）"><div class="seg win" style="flex:1"></div><div class="seg lose" style="flex:2"></div></div><span class="val">1勝2敗</span></div>
+    <div class="brow"><span>Viscous</span><div class="track" title="Viscous：3回（1勝2敗）"><div class="seg win" style="flex:1"></div><div class="seg lose" style="flex:2"></div></div><span class="val">1勝2敗</span></div>
+    <div class="brow"><span>Lash</span><div class="track" title="Lash：2回（1勝1敗）"><div class="seg win" style="flex:1"></div><div class="seg lose" style="flex:1"></div></div><span class="val">1勝1敗</span></div>
+    <div class="brow"><span>Venator</span><div class="track" title="Venator：2回（1勝1敗）"><div class="seg win" style="flex:1"></div><div class="seg lose" style="flex:1"></div></div><span class="val">1勝1敗</span></div>
+    <div class="brow"><span>Kelvin</span><div class="track" title="Kelvin：2回（1勝1敗）"><div class="seg win" style="flex:1"></div><div class="seg lose" style="flex:1"></div></div><span class="val">1勝1敗</span></div>
+    <div class="brow hot"><span>Lady Geist</span><div class="track" title="Lady Geist：3回（0勝3敗）"><div class="seg lose only" style="flex:3"></div></div><span class="val">0勝3敗</span></div>
+    <div class="brow"><span>Violet</span><div class="track" title="Violet：2回（0勝2敗）"><div class="seg lose only" style="flex:2"></div></div><span class="val">0勝2敗</span></div>
+    <div class="brow"><span>Shiv</span><div class="track" title="Shiv：2回（0勝2敗）"><div class="seg lose only" style="flex:2"></div></div><span class="val">0勝2敗</span></div>
+    <div class="brow"><span>Grey Talon</span><div class="track" title="Grey Talon：2回（0勝2敗）"><div class="seg lose only" style="flex:2"></div></div><span class="val">0勝2敗</span></div>
+    <div class="cap" style="margin-top:10px">Mirage は3マップすべて勝ち、Lady Geist は3マップすべて負けでした（EU Map 2 の Buff Enjoyers、NA Map 2 の Cloud9、NA Map 3 の YFP）。</div>
+  </div>
+
+  <h2>3. BAN されたヒーロー</h2>
+  <div class="sub">5マップ×両チーム3体ずつ、計30枠の集計です。</div>
+  <div class="card bars">
+    <div class="pbar"><span>Baba</span><div style="width:100%"><div class="fill" style="width:100%;background:var(--neutral)" title="Baba 5マップ"></div></div><span class="note hot">5／5マップ</span></div>
+    <div class="pbar"><span>Nurse Harrow</span><div style="width:100%"><div class="fill" style="width:80%;background:var(--neutral)" title="Nurse Harrow 4マップ"></div></div><span class="note">4／5マップ</span></div>
+    <div class="pbar"><span>Paradox</span><div style="width:100%"><div class="fill" style="width:60%;background:var(--neutral)" title="Paradox 3マップ"></div></div><span class="note">3／5マップ</span></div>
+    <div class="pbar"><span>Violet</span><div style="width:100%"><div class="fill" style="width:60%;background:var(--neutral)" title="Violet 3マップ"></div></div><span class="note">3／5マップ</span></div>
+    <div class="pbar"><span>Pocket</span><div style="width:100%"><div class="fill" style="width:60%;background:var(--neutral)" title="Pocket 3マップ"></div></div><span class="note">3／5マップ</span></div>
+    <div class="pbar"><span>Wraith</span><div style="width:100%"><div class="fill" style="width:40%;background:var(--neutral)" title="Wraith 2マップ"></div></div><span class="note">2／5マップ</span></div>
+    <div class="pbar"><span>Mirage</span><div style="width:100%"><div class="fill" style="width:40%;background:var(--neutral)" title="Mirage 2マップ"></div></div><span class="note">2／5マップ</span></div>
+    <div class="pbar"><span>Holliday</span><div style="width:100%"><div class="fill" style="width:40%;background:var(--neutral)" title="Holliday 2マップ"></div></div><span class="note">2／5マップ</span></div>
+    <div class="pbar"><span>Lady Geist</span><div style="width:100%"><div class="fill" style="width:40%;background:var(--neutral)" title="Lady Geist 2マップ"></div></div><span class="note">2／5マップ</span></div>
+    <div class="pbar"><span>Ivy</span><div style="width:100%"><div class="fill" style="width:20%;background:var(--neutral)" title="Ivy 1マップ"></div></div><span class="note">1／5マップ</span></div>
+    <div class="pbar"><span>Shiv</span><div style="width:100%"><div class="fill" style="width:20%;background:var(--neutral)" title="Shiv 1マップ"></div></div><span class="note">1／5マップ</span></div>
+    <div class="pbar"><span>Rem</span><div style="width:100%"><div class="fill" style="width:20%;background:var(--neutral)" title="Rem 1マップ"></div></div><span class="note">1／5マップ</span></div>
+    <div class="pbar"><span>Kelvin</span><div style="width:100%"><div class="fill" style="width:20%;background:var(--neutral)" title="Kelvin 1マップ"></div></div><span class="note">1／5マップ</span></div>
+    <div class="cap" style="margin-top:10px">Baba は、EU では Leviathan、NA では Cloud9 が、毎マップ BAN しています。Pocket の BAN はすべて YFP によるものです。</div>
+  </div>
+
+  <h2>4. 各マップのスコアボード</h2>
+  <div class="sub">マッチIDから取得したデータです。ダメージの棒は、そのマップの最大値を基準にしています。</div>
+  <div class="card" style="margin-top:14px">
+    <div class="map"><header style="margin-bottom:0"><h3>EU 決勝 Map 1</h3><span class="badge">Leviathan 勝ち／36分32秒／キル 19-8／マッチID 139878037</span></header></div>
+    <div class="sbwrap"><table class="sb"><thead><tr><th>選手</th><th>ヒーロー</th><th>K/D/A</th><th>ソウル</th><th>ダメージ</th><th>回復</th></tr></thead><tbody><tr class="tw"><td>empty dreams</td><td>Mina</td><td><span>3</span>/<span>0</span>/10</td><td>53,365</td><td class="hi"><span class="dmg"><i class="w" style="width:70px"></i>41,858</span></td><td class="hi">19,152</td></tr><tr class="tw"><td>Sanya_sniper</td><td>Wraith</td><td><span class="hi">7</span>/<span>0</span>/7</td><td>52,299</td><td><span class="dmg"><i class="w" style="width:57px"></i>34,031</span></td><td>4,850</td></tr><tr class="tw"><td>together</td><td>Mirage</td><td><span>2</span>/<span>1</span>/13</td><td>46,165</td><td><span class="dmg"><i class="w" style="width:39px"></i>23,583</span></td><td>7,627</td></tr><tr class="tw"><td>ABL</td><td>Drifter</td><td><span>2</span>/<span class="hi">5</span>/12</td><td>39,078</td><td><span class="dmg"><i class="w" style="width:37px"></i>22,149</span></td><td>6,052</td></tr><tr class="tw"><td>overseas</td><td>Abrams</td><td><span>3</span>/<span>1</span>/11</td><td>40,054</td><td><span class="dmg"><i class="w" style="width:32px"></i>19,325</span></td><td>9,794</td></tr><tr class="tw"><td>Dimov</td><td>Solomon</td><td><span>2</span>/<span>1</span>/9</td><td>38,237</td><td><span class="dmg"><i class="w" style="width:23px"></i>13,524</span></td><td>1,201</td></tr><tr class="sep"><td colspan="6"></td></tr><tr class="tl"><td>vraic</td><td>Holliday</td><td><span>1</span>/<span>3</span>/6</td><td>34,033</td><td><span class="dmg"><i class="l" style="width:59px"></i>35,344</span></td><td>5,160</td></tr><tr class="tl"><td>cosmetical</td><td>Pocket</td><td><span>3</span>/<span>3</span>/0</td><td>47,281</td><td><span class="dmg"><i class="l" style="width:51px"></i>30,667</span></td><td>939</td></tr><tr class="tl"><td>Zerggy</td><td>Lash</td><td><span>0</span>/<span>1</span>/1</td><td>46,588</td><td><span class="dmg"><i class="l" style="width:45px"></i>26,745</span></td><td>14,952</td></tr><tr class="tl"><td>hoot</td><td>Shiv</td><td><span>3</span>/<span class="hi">5</span>/3</td><td>31,713</td><td><span class="dmg"><i class="l" style="width:30px"></i>18,120</span></td><td>2,375</td></tr><tr class="tl"><td>lystic</td><td>Billy</td><td><span>1</span>/<span>4</span>/4</td><td>33,836</td><td><span class="dmg"><i class="l" style="width:21px"></i>12,524</span></td><td>4,238</td></tr><tr class="tl"><td>obikym</td><td>Rem</td><td><span>0</span>/<span>3</span>/3</td><td>32,937</td><td><span class="dmg"><i class="l" style="width:9px"></i>5,429</span></td><td>16,369</td></tr></tbody></table></div>
+    <div class="cap">上の6人がLeviathan（青）、下の6人がBuff Enjoyers（オレンジ）。太字はそのマップの最多です。</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="map"><header style="margin-bottom:0"><h3>EU 決勝 Map 2</h3><span class="badge">Leviathan 勝ち／21分24秒／キル 37-14／マッチID 139909077</span></header></div>
+    <div class="sbwrap"><table class="sb"><thead><tr><th>選手</th><th>ヒーロー</th><th>K/D/A</th><th>ソウル</th><th>ダメージ</th><th>回復</th></tr></thead><tbody><tr class="tw"><td>empty dreams</td><td>Ivy</td><td><span>7</span>/<span>3</span>/12</td><td>27,710</td><td class="hi"><span class="dmg"><i class="w" style="width:70px"></i>25,611</span></td><td>17,254</td></tr><tr class="tw"><td>overseas</td><td>Abrams</td><td><span class="hi">8</span>/<span>4</span>/14</td><td>24,391</td><td><span class="dmg"><i class="w" style="width:69px"></i>25,251</span></td><td>9,086</td></tr><tr class="tw"><td>ABL</td><td>Holliday</td><td><span>6</span>/<span>3</span>/19</td><td>24,727</td><td><span class="dmg"><i class="w" style="width:62px"></i>22,812</span></td><td>617</td></tr><tr class="tw"><td>Sanya_sniper</td><td>Mina</td><td><span>5</span>/<span>0</span>/13</td><td>27,905</td><td><span class="dmg"><i class="w" style="width:57px"></i>20,995</span></td><td>9,845</td></tr><tr class="tw"><td>together</td><td>Silver</td><td><span class="hi">8</span>/<span>2</span>/11</td><td>23,401</td><td><span class="dmg"><i class="w" style="width:48px"></i>17,696</span></td><td>4,868</td></tr><tr class="tw"><td>Dimov</td><td>Rem</td><td><span>3</span>/<span>2</span>/19</td><td>25,983</td><td><span class="dmg"><i class="w" style="width:29px"></i>10,665</span></td><td class="hi">27,181</td></tr><tr class="sep"><td colspan="6"></td></tr><tr class="tl"><td>Zerggy</td><td>Lady Geist</td><td><span>0</span>/<span>6</span>/4</td><td>19,701</td><td><span class="dmg"><i class="l" style="width:62px"></i>22,576</span></td><td>12,534</td></tr><tr class="tl"><td>vraic</td><td>Grey Talon</td><td><span>5</span>/<span>4</span>/3</td><td>17,739</td><td><span class="dmg"><i class="l" style="width:55px"></i>19,979</span></td><td>0</td></tr><tr class="tl"><td>hoot</td><td>Viscous</td><td><span>3</span>/<span>7</span>/5</td><td>17,342</td><td><span class="dmg"><i class="l" style="width:54px"></i>19,835</span></td><td>2,544</td></tr><tr class="tl"><td>lystic</td><td>Billy</td><td><span>2</span>/<span>5</span>/6</td><td>17,915</td><td><span class="dmg"><i class="l" style="width:47px"></i>17,360</span></td><td>4,698</td></tr><tr class="tl"><td>cosmetical</td><td>Wraith</td><td><span>2</span>/<span>6</span>/3</td><td>22,180</td><td><span class="dmg"><i class="l" style="width:34px"></i>12,561</span></td><td>1,464</td></tr><tr class="tl"><td>obikym</td><td>Haze</td><td><span>2</span>/<span class="hi">9</span>/6</td><td>14,731</td><td><span class="dmg"><i class="l" style="width:34px"></i>12,455</span></td><td>163</td></tr></tbody></table></div>
+    <div class="cap">上の6人がLeviathan（青）、下の6人がBuff Enjoyers（オレンジ）。太字はそのマップの最多です。</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="map"><header style="margin-bottom:0"><h3>NA 決勝 Map 1</h3><span class="badge">Cloud9 勝ち／33分14秒／キル 40-33／マッチID 139972372</span></header></div>
+    <div class="sbwrap"><table class="sb"><thead><tr><th>選手</th><th>ヒーロー</th><th>K/D/A</th><th>ソウル</th><th>ダメージ</th><th>回復</th></tr></thead><tbody><tr class="tw"><td>Zeno</td><td>Paradox</td><td><span class="hi">10</span>/<span>6</span>/18</td><td>42,200</td><td class="hi"><span class="dmg"><i class="w" style="width:70px"></i>52,051</span></td><td>2,824</td></tr><tr class="tw"><td>Lomein</td><td>Billy</td><td><span>7</span>/<span>5</span>/26</td><td>40,280</td><td><span class="dmg"><i class="w" style="width:61px"></i>45,319</span></td><td>10,229</td></tr><tr class="tw"><td>League</td><td>Lash</td><td><span>7</span>/<span>3</span>/14</td><td>45,559</td><td><span class="dmg"><i class="w" style="width:50px"></i>37,136</span></td><td>17,736</td></tr><tr class="tw"><td>average</td><td>Mirage</td><td><span class="hi">10</span>/<span class="hi">9</span>/12</td><td>33,596</td><td><span class="dmg"><i class="w" style="width:46px"></i>33,958</span></td><td>10,086</td></tr><tr class="tw"><td>Saiah</td><td>Viscous</td><td><span>3</span>/<span>4</span>/14</td><td>30,087</td><td><span class="dmg"><i class="w" style="width:40px"></i>29,599</span></td><td>10,390</td></tr><tr class="tw"><td>JonJon</td><td>Ivy</td><td><span>3</span>/<span>6</span>/16</td><td>33,668</td><td><span class="dmg"><i class="w" style="width:36px"></i>26,639</span></td><td>14,453</td></tr><tr class="sep"><td colspan="6"></td></tr><tr class="tl"><td>Lefaa</td><td>Mina</td><td><span>6</span>/<span>4</span>/12</td><td>38,567</td><td><span class="dmg"><i class="l" style="width:54px"></i>40,313</span></td><td>9,799</td></tr><tr class="tl"><td>Braeden</td><td>Kelvin</td><td><span>4</span>/<span>4</span>/21</td><td>29,912</td><td><span class="dmg"><i class="l" style="width:54px"></i>39,807</span></td><td class="hi">28,615</td></tr><tr class="tl"><td>rocaine</td><td>Venator</td><td><span>9</span>/<span>8</span>/6</td><td>37,625</td><td><span class="dmg"><i class="l" style="width:52px"></i>38,879</span></td><td>14,061</td></tr><tr class="tl"><td>Goober</td><td>Holliday</td><td><span>4</span>/<span>8</span>/18</td><td>29,914</td><td><span class="dmg"><i class="l" style="width:50px"></i>36,865</span></td><td>3,663</td></tr><tr class="tl"><td>Zirbzy</td><td>Violet</td><td><span>5</span>/<span>8</span>/18</td><td>31,136</td><td><span class="dmg"><i class="l" style="width:32px"></i>23,527</span></td><td>5,598</td></tr><tr class="tl"><td>Calc</td><td>Abrams</td><td><span>5</span>/<span>8</span>/14</td><td>28,281</td><td><span class="dmg"><i class="l" style="width:26px"></i>19,656</span></td><td>10,229</td></tr></tbody></table></div>
+    <div class="cap">上の6人がCloud9（青）、下の6人がYFP（オレンジ）。太字はそのマップの最多です。</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="map"><header style="margin-bottom:0"><h3>NA 決勝 Map 2</h3><span class="badge">YFP 勝ち／32分25秒／キル 33-8／マッチID 139999621</span></header></div>
+    <div class="sbwrap"><table class="sb"><thead><tr><th>選手</th><th>ヒーロー</th><th>K/D/A</th><th>ソウル</th><th>ダメージ</th><th>回復</th></tr></thead><tbody><tr class="tw"><td>rocaine</td><td>Venator</td><td><span class="hi">14</span>/<span>2</span>/11</td><td>47,597</td><td class="hi"><span class="dmg"><i class="w" style="width:70px"></i>46,175</span></td><td>7,149</td></tr><tr class="tw"><td>Goober</td><td>Paradox</td><td><span>6</span>/<span>1</span>/18</td><td>34,410</td><td><span class="dmg"><i class="w" style="width:57px"></i>37,591</span></td><td>2,591</td></tr><tr class="tw"><td>Braeden</td><td>Kelvin</td><td><span>3</span>/<span>1</span>/18</td><td>34,039</td><td><span class="dmg"><i class="w" style="width:47px"></i>31,067</span></td><td>17,019</td></tr><tr class="tw"><td>Calc</td><td>Abrams</td><td><span>5</span>/<span>1</span>/13</td><td>39,833</td><td><span class="dmg"><i class="w" style="width:37px"></i>24,530</span></td><td>14,562</td></tr><tr class="tw"><td>Lefaa</td><td>Mina</td><td><span>3</span>/<span>1</span>/11</td><td>46,805</td><td><span class="dmg"><i class="w" style="width:35px"></i>23,051</span></td><td>8,457</td></tr><tr class="tw"><td>Zirbzy</td><td>Nurse Harrow</td><td><span>2</span>/<span>2</span>/23</td><td>32,566</td><td><span class="dmg"><i class="w" style="width:10px"></i>6,530</span></td><td class="hi">55,746</td></tr><tr class="sep"><td colspan="6"></td></tr><tr class="tl"><td>JonJon</td><td>Lady Geist</td><td><span>2</span>/<span>4</span>/2</td><td>38,023</td><td><span class="dmg"><i class="l" style="width:60px"></i>39,753</span></td><td>21,128</td></tr><tr class="tl"><td>average</td><td>Shiv</td><td><span>1</span>/<span class="hi">11</span>/2</td><td>27,751</td><td><span class="dmg"><i class="l" style="width:38px"></i>24,855</span></td><td>3,100</td></tr><tr class="tl"><td>Zeno</td><td>Doorman</td><td><span>1</span>/<span>3</span>/2</td><td>29,027</td><td><span class="dmg"><i class="l" style="width:36px"></i>23,434</span></td><td>915</td></tr><tr class="tl"><td>League</td><td>Ivy</td><td><span>0</span>/<span>4</span>/5</td><td>35,976</td><td><span class="dmg"><i class="l" style="width:33px"></i>21,871</span></td><td>16,816</td></tr><tr class="tl"><td>Lomein</td><td>Billy</td><td><span>2</span>/<span>8</span>/2</td><td>29,566</td><td><span class="dmg"><i class="l" style="width:29px"></i>18,840</span></td><td>2,642</td></tr><tr class="tl"><td>Saiah</td><td>Rem</td><td><span>2</span>/<span>3</span>/3</td><td>28,310</td><td><span class="dmg"><i class="l" style="width:25px"></i>16,383</span></td><td>21,797</td></tr></tbody></table></div>
+    <div class="cap">上の6人がYFP（青）、下の6人がCloud9（オレンジ）。太字はそのマップの最多です。</div>
+  </div>
+  <div class="card" style="margin-top:14px">
+    <div class="map"><header style="margin-bottom:0"><h3>NA 決勝 Map 3</h3><span class="badge">Cloud9 勝ち／27分17秒／キル 27-7／マッチID 140025286</span></header></div>
+    <div class="sbwrap"><table class="sb"><thead><tr><th>選手</th><th>ヒーロー</th><th>K/D/A</th><th>ソウル</th><th>ダメージ</th><th>回復</th></tr></thead><tbody><tr class="tw"><td>League</td><td>Wraith</td><td><span class="hi">5</span>/<span>2</span>/13</td><td>36,205</td><td class="hi"><span class="dmg"><i class="w" style="width:70px"></i>30,508</span></td><td>4,882</td></tr><tr class="tw"><td>JonJon</td><td>Seven</td><td><span class="hi">5</span>/<span>0</span>/17</td><td>39,610</td><td><span class="dmg"><i class="w" style="width:62px"></i>27,052</span></td><td>1,496</td></tr><tr class="tw"><td>average</td><td>Mirage</td><td><span class="hi">5</span>/<span>1</span>/14</td><td>36,805</td><td><span class="dmg"><i class="w" style="width:61px"></i>26,730</span></td><td>9,470</td></tr><tr class="tw"><td>Lomein</td><td>Billy</td><td><span>4</span>/<span>1</span>/14</td><td>30,374</td><td><span class="dmg"><i class="w" style="width:57px"></i>25,041</span></td><td>4,826</td></tr><tr class="tw"><td>Zeno</td><td>Yamato</td><td><span>4</span>/<span>3</span>/11</td><td>29,732</td><td><span class="dmg"><i class="w" style="width:53px"></i>22,935</span></td><td>10,137</td></tr><tr class="tw"><td>Saiah</td><td>Rem</td><td><span>4</span>/<span>0</span>/17</td><td>30,208</td><td><span class="dmg"><i class="w" style="width:28px"></i>12,138</span></td><td class="hi">36,399</td></tr><tr class="sep"><td colspan="6"></td></tr><tr class="tl"><td>Braeden</td><td>Grey Talon</td><td><span>2</span>/<span>1</span>/4</td><td>23,320</td><td><span class="dmg"><i class="l" style="width:66px"></i>28,597</span></td><td>488</td></tr><tr class="tl"><td>Lefaa</td><td>Lady Geist</td><td><span>0</span>/<span>3</span>/1</td><td>30,608</td><td><span class="dmg"><i class="l" style="width:59px"></i>25,767</span></td><td>17,900</td></tr><tr class="tl"><td>Goober</td><td>Viscous</td><td><span>4</span>/<span>5</span>/3</td><td>24,399</td><td><span class="dmg"><i class="l" style="width:57px"></i>24,763</span></td><td>2,401</td></tr><tr class="tl"><td>Calc</td><td>Abrams</td><td><span>1</span>/<span class="hi">8</span>/3</td><td>21,453</td><td><span class="dmg"><i class="l" style="width:47px"></i>20,689</span></td><td>8,940</td></tr><tr class="tl"><td>rocaine</td><td>Mina</td><td><span>0</span>/<span>6</span>/3</td><td>25,478</td><td><span class="dmg"><i class="l" style="width:44px"></i>19,353</span></td><td>7,752</td></tr><tr class="tl"><td>Zirbzy</td><td>Violet</td><td><span>0</span>/<span>4</span>/6</td><td>22,515</td><td><span class="dmg"><i class="l" style="width:26px"></i>11,114</span></td><td>3,531</td></tr></tbody></table></div>
+    <div class="cap">上の6人がCloud9（青）、下の6人がYFP（オレンジ）。太字はそのマップの最多です。</div>
+  </div>
+
+  <!-- 流れ -->
+  <h2>5. 試合の流れ（EDL.GG の記事から）</h2>
+  <div class="card">
+    <ul>
+      <li><b>EU Map 1（36分）</b>：合計27キルの低キル戦。終盤の約6分で相手をほぼ全滅させ、そのまま Mid-Boss と Rift を取って勝利。</li>
+      <li><b>EU Map 2（21分）</b>：Leviathan が 37-14 で快勝。</li>
+      <li><b>NA Map 1</b>：合計73キル（40-33）。序盤は YFP が強かったが、Cloud9 が終盤に勝ち切った。</li>
+      <li><b>NA Map 2</b>：YFP が6分前に Guardian を2体壊し、8分で 9-5。</li>
+      <li><b>NA Map 3</b>：Cloud9 が終盤型のドラフトでジャングルを支配。YFP は7キル。</li>
+    </ul>
+  </div>
+
+  <h2>6. 上達に向けた持ち帰り</h2>
+  <div class="take">
+    <div class="card"><h3>① 集団戦のあとはオブジェクトまで</h3>
+      <p>EU Map 1 は、相手をほぼ全滅させた直後に Mid-Boss と Rift まで取って試合を終わらせています。</p></div>
+    <div class="card"><h3>② 序盤リードは Guardian で形にする</h3>
+      <p>NA Map 2 の YFP は、6分前に Guardian を2体壊して、8分でキル 9-5。以降は Cloud9 を3キルに抑えました。</p></div>
+    <div class="card"><h3>③ 先行ピックでも安心しない</h3>
+      <p>Lady Geist を取ったチームは3試合すべて負け。先に取ったヒーローより、全体の構成で見ます。</p></div>
+    <div class="card"><h3>④ 終盤型の構成は序盤負けでも勝てる</h3>
+      <p>NA Map 3 の Cloud9（Wraith・Mirage・Seven など）は、序盤の差を逆転しました。</p></div>
+    <div class="card"><h3>⑤ BAN は「使われると困るヒーロー」を消す手</h3>
+      <p>Baba は5マップすべてで BAN され、一度も使われていません。Nurse Harrow も、BAN されたマップが4つありました。</p></div>
+  </div>
+  <div class="card" style="margin-top:12px">
+    <h3>自分の試合に当てはめる（直近10戦で数える3点）</h3>
+    <ul>
+      <li>集団戦に勝ったあと、オブジェクトを取れた回数</li>
+      <li>序盤に壊せた Guardian の数</li>
+      <li>自分のデス数（Cloud9 の average は、この試合で11デスでした）</li>
+    </ul>
+  </div>
+
+  <h2>7. このページに載せていないこと</h2>
+  <div class="card">
+    <ul>
+      <li>ゲーム中の細かい動き（ファイトの位置取りなど）。</li>
+    </ul>
+  </div>
+
+  <div class="foot">
+    出典：
+    <a href="https://api.deadlock-api.com/">Deadlock API（マッチデータ）</a> ／
+    <a href="https://www.youtube.com/watch?v=u1u03ypaNhg">Night Shift #65 配信アーカイブ（YouTube）</a> ／
+    <a href="https://www.youtube.com/watch?v=Fs-L75YFu_I">EU 決勝（YouTube）</a> ／
+    <a href="https://www.youtube.com/watch?v=Kj2lMZmJquk">NA 決勝（YouTube）</a> ／
+    <a href="https://edl.gg/news/dlns-65-eu">DLNS 65 EU（EDL.GG）</a> ／
+    <a href="https://edl.gg/news/dlns-65-na">DLNS 65 NA（EDL.GG）</a> ／
+    <a href="https://edl.gg/events/deadlock-night-shift-65-eu/series/grand-final-1-deadlock-night-shift-65-eu-template-grand-final">EU 決勝シリーズ（EDL.GG）</a> ／
+    <a href="https://edl.gg/events/deadlock-night-shift-65-na/series/grand-final-1-deadlock-night-shift-65-na-template-grand-final">NA 決勝シリーズ（EDL.GG）</a>
+  </div>
+</div>
+</body>
+</html>
