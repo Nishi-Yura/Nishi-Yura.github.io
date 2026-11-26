@@ -1,0 +1,101 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* Vite の root は entries/ なので、クラスを拾う場所を明示する */
+@source "../src";
+
+/* DESIGN.md「3. 確定した方向性：A. スコアシート」の色と文字 */
+
+@custom-variant dark (@media (prefers-color-scheme: dark));
+
+@theme inline {
+  --font-sans: "IBM Plex Sans JP", system-ui, sans-serif;
+  --font-heading: "Barlow Semi Condensed", "IBM Plex Sans JP", sans-serif;
+  --font-num: "Barlow Semi Condensed", "IBM Plex Sans JP", sans-serif;
+
+  --color-page: var(--page);
+  --color-panel: var(--panel);
+  --color-cell: var(--cell);
+  --color-ink: var(--ink);
+  --color-mute: var(--mute);
+  --color-line: var(--line);
+  --color-link: var(--link);
+  --color-win: var(--win);
+  --color-lose: var(--lose);
+  --color-hi: var(--hi);
+  --color-cellhover: var(--cellhover);
+
+  /* shadcn/ui のトークンを上の色に割り当てる */
+  --color-background: var(--page);
+  --color-foreground: var(--ink);
+  --color-card: var(--panel);
+  --color-card-foreground: var(--ink);
+  --color-popover: var(--ink);
+  --color-popover-foreground: var(--panel);
+  --color-primary: var(--ink);
+  --color-primary-foreground: var(--panel);
+  --color-secondary: var(--cell);
+  --color-secondary-foreground: var(--ink);
+  --color-muted: var(--cell);
+  --color-muted-foreground: var(--mute);
+  --color-accent: var(--cell);
+  --color-accent-foreground: var(--ink);
+  --color-destructive: var(--lose);
+  --color-border: var(--line);
+  --color-input: var(--line);
+  --color-ring: var(--link);
+
+  --radius-sm: 0px;
+  --radius-md: 0px;
+  --radius-lg: 0px;
+  --radius-xl: 0px;
+}
+
+:root {
+  --page: #cfcfcb;
+  --panel: #ffffff;
+  --cell: #f1f1ef;
+  --cellhover: #f7f7f5;
+  --ink: #2b2b2b;
+  --mute: #6b6b6b;
+  --line: #ececec;
+  --link: #0a7cad;
+  --win: #2b8a3e;
+  --lose: #c92a2a;
+  --hi: #e3f1e5;
+  --radius: 0px;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --page: #161615;
+    --panel: #222220;
+    --cell: #2c2c2a;
+    --cellhover: #292927;
+    --ink: #e8e8e4;
+    --mute: #9a9a94;
+    --line: #333331;
+    --link: #5bb6dd;
+    --win: #5cc275;
+    --lose: #ef6b6b;
+    --hi: #1f3a26;
+    color-scheme: dark;
+  }
+}
+
+@layer base {
+  * { @apply border-border outline-ring/50; }
+  html { @apply font-sans; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-page text-ink; margin: 0; font-size: 13px; line-height: 1.7; }
+  a { color: var(--link); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .num { font-variant-numeric: tabular-nums; }
+}
+
+@layer components {
+  .lab {
+    @apply text-[11px] font-bold uppercase tracking-[.08em] text-mute;
+  }
+}

@@ -1,0 +1,167 @@
+{
+  "id": 1,
+  "event": "Deadlock Night Shift #65",
+  "title": "Deadlock Night Shift #65 決勝",
+  "date": "2026-11-18",
+  "headline": "Baba は5マップすべてで BAN、Lady Geist を取ったチームは3戦全敗",
+  "series": [
+    { "region": "EU", "teams": ["Leviathan", "Buff Enjoyers"], "score": [2, 0], "note": "Leviathan が優勝" },
+    { "region": "NA", "teams": ["Cloud9", "YFP"], "score": [2, 1], "note": "Cloud9 が優勝（DLNS 8連覇）" }
+  ],
+  "maps": [
+    {
+      "id": "eu1", "region": "EU", "no": 1, "winner": "Leviathan", "firstPick": "Leviathan",
+      "duration": "36:32", "matchId": 139878037,
+      "screenshot": "img/eu_m1.png", "screenshotNote": "配信画面（左が Buff Enjoyers、右が Leviathan）",
+      "flow": "合計27キルの低キル戦。終盤の約6分で相手をほぼ全滅させ、そのまま Mid-Boss と Rift を取って勝利。",
+      "teams": [
+        { "name": "Leviathan", "picks": ["Mina", "Wraith", "Mirage", "Abrams", "Solomon", "Drifter"], "bans": ["Ivy", "Violet", "Baba"],
+          "players": [
+            ["empty dreams", "Mina", 3, 0, 10, 53365, 41858, 19152],
+            ["Sanya_sniper", "Wraith", 7, 0, 7, 52299, 34031, 4850],
+            ["together", "Mirage", 2, 1, 13, 46165, 23583, 7627],
+            ["ABL", "Drifter", 2, 5, 12, 39078, 22149, 6052],
+            ["overseas", "Abrams", 3, 1, 11, 40054, 19325, 9794],
+            ["Dimov", "Solomon", 2, 1, 9, 38237, 13524, 1201]
+          ] },
+        { "name": "Buff Enjoyers", "picks": ["Shiv", "Holliday", "Pocket", "Billy", "Lash", "Rem"], "bans": ["Lady Geist", "Paradox", "Nurse Harrow"],
+          "players": [
+            ["vraic", "Holliday", 1, 3, 6, 34033, 35344, 5160],
+            ["cosmetical", "Pocket", 3, 3, 0, 47281, 30667, 939],
+            ["Zerggy", "Lash", 0, 1, 1, 46588, 26745, 14952],
+            ["hoot", "Shiv", 3, 5, 3, 31713, 18120, 2375],
+            ["lystic", "Billy", 1, 4, 4, 33836, 12524, 4238],
+            ["obikym", "Rem", 0, 3, 3, 32937, 5429, 16369]
+          ] }
+      ]
+    },
+    {
+      "id": "eu2", "region": "EU", "no": 2, "winner": "Leviathan", "firstPick": "Buff Enjoyers",
+      "duration": "21:24", "matchId": 139909077,
+      "screenshot": "img/eu_m2.png",
+      "flow": "Leviathan が 37-14 で快勝。",
+      "teams": [
+        { "name": "Buff Enjoyers", "picks": ["Lady Geist", "Wraith", "Billy", "Viscous", "Haze", "Grey Talon"], "bans": ["Shiv", "Mirage", "Nurse Harrow"],
+          "players": [
+            ["Zerggy", "Lady Geist", 0, 6, 4, 19701, 22576, 12534],
+            ["vraic", "Grey Talon", 5, 4, 3, 17739, 19979, 0],
+            ["hoot", "Viscous", 3, 7, 5, 17342, 19835, 2544],
+            ["lystic", "Billy", 2, 5, 6, 17915, 17360, 4698],
+            ["cosmetical", "Wraith", 2, 6, 3, 22180, 12561, 1464],
+            ["obikym", "Haze", 2, 9, 6, 14731, 12455, 163]
+          ] },
+        { "name": "Leviathan", "picks": ["Mina", "Holliday", "Abrams", "Rem", "Ivy", "Silver"], "bans": ["Violet", "Paradox", "Baba"],
+          "players": [
+            ["empty dreams", "Ivy", 7, 3, 12, 27710, 25611, 17254],
+            ["overseas", "Abrams", 8, 4, 14, 24391, 25251, 9086],
+            ["ABL", "Holliday", 6, 3, 19, 24727, 22812, 617],
+            ["Sanya_sniper", "Mina", 5, 0, 13, 27905, 20995, 9845],
+            ["together", "Silver", 8, 2, 11, 23401, 17696, 4868],
+            ["Dimov", "Rem", 3, 2, 19, 25983, 10665, 27181]
+          ] }
+      ]
+    },
+    {
+      "id": "na1", "region": "NA", "no": 1, "winner": "Cloud9", "firstPick": "Cloud9",
+      "duration": "33:14", "matchId": 139972372,
+      "screenshot": "img/na_m1.png", "screenshotNote": "配信画面（ピック確定後は、ヒーロー名ではなく選手名が表示されます）",
+      "flow": "合計73キル（40-33）。序盤は YFP が強かったが、Cloud9 が終盤に勝ち切った。",
+      "teams": [
+        { "name": "Cloud9", "picks": ["Paradox", "Billy", "Mirage", "Viscous", "Ivy", "Lash"], "bans": ["Wraith", "Baba", "Rem"],
+          "players": [
+            ["Zeno", "Paradox", 10, 6, 18, 42200, 52051, 2824],
+            ["Lomein", "Billy", 7, 5, 26, 40280, 45319, 10229],
+            ["League", "Lash", 7, 3, 14, 45559, 37136, 17736],
+            ["average", "Mirage", 10, 9, 12, 33596, 33958, 10086],
+            ["Saiah", "Viscous", 3, 4, 14, 30087, 29599, 10390],
+            ["JonJon", "Ivy", 3, 6, 16, 33668, 26639, 14453]
+          ] },
+        { "name": "YFP", "picks": ["Holliday", "Mina", "Abrams", "Violet", "Venator", "Kelvin"], "bans": ["Nurse Harrow", "Lady Geist", "Pocket"],
+          "players": [
+            ["Lefaa", "Mina", 6, 4, 12, 38567, 40313, 9799],
+            ["Braeden", "Kelvin", 4, 4, 21, 29912, 39807, 28615],
+            ["rocaine", "Venator", 9, 8, 6, 37625, 38879, 14061],
+            ["Goober", "Holliday", 4, 8, 18, 29914, 36865, 3663],
+            ["Zirbzy", "Violet", 5, 8, 18, 31136, 23527, 5598],
+            ["Calc", "Abrams", 5, 8, 14, 28281, 19656, 10229]
+          ] }
+      ]
+    },
+    {
+      "id": "na2", "region": "NA", "no": 2, "winner": "YFP", "firstPick": "Cloud9",
+      "duration": "32:25", "matchId": 139999621,
+      "screenshot": "img/na_m2.png",
+      "flow": "YFP が6分前に Guardian を2体壊し、8分で 9-5。その後は Cloud9 を3キルに抑えた。",
+      "teams": [
+        { "name": "Cloud9", "picks": ["Lady Geist", "Billy", "Shiv", "Rem", "Ivy", "Doorman"], "bans": ["Baba", "Holliday", "Mirage"],
+          "players": [
+            ["JonJon", "Lady Geist", 2, 4, 2, 38023, 39753, 21128],
+            ["average", "Shiv", 1, 11, 2, 27751, 24855, 3100],
+            ["Zeno", "Doorman", 1, 3, 2, 29027, 23434, 915],
+            ["League", "Ivy", 0, 4, 5, 35976, 21871, 16816],
+            ["Lomein", "Billy", 2, 8, 2, 29566, 18840, 2642],
+            ["Saiah", "Rem", 2, 3, 3, 28310, 16383, 21797]
+          ] },
+        { "name": "YFP", "picks": ["Paradox", "Mina", "Abrams", "Nurse Harrow", "Venator", "Kelvin"], "bans": ["Violet", "Wraith", "Pocket"],
+          "players": [
+            ["rocaine", "Venator", 14, 2, 11, 47597, 46175, 7149],
+            ["Goober", "Paradox", 6, 1, 18, 34410, 37591, 2591],
+            ["Braeden", "Kelvin", 3, 1, 18, 34039, 31067, 17019],
+            ["Calc", "Abrams", 5, 1, 13, 39833, 24530, 14562],
+            ["Lefaa", "Mina", 3, 1, 11, 46805, 23051, 8457],
+            ["Zirbzy", "Nurse Harrow", 2, 2, 23, 32566, 6530, 55746]
+          ] }
+      ]
+    },
+    {
+      "id": "na3", "region": "NA", "no": 3, "winner": "Cloud9", "firstPick": "YFP",
+      "duration": "27:17", "matchId": 140025286,
+      "screenshot": "img/na_m3.png",
+      "flow": "Cloud9 が終盤型のドラフトでジャングルを支配。YFP は7キル。",
+      "teams": [
+        { "name": "YFP", "picks": ["Lady Geist", "Mina", "Abrams", "Violet", "Grey Talon", "Viscous"], "bans": ["Nurse Harrow", "Holliday", "Pocket"],
+          "players": [
+            ["Braeden", "Grey Talon", 2, 1, 4, 23320, 28597, 488],
+            ["Lefaa", "Lady Geist", 0, 3, 1, 30608, 25767, 17900],
+            ["Goober", "Viscous", 4, 5, 3, 24399, 24763, 2401],
+            ["Calc", "Abrams", 1, 8, 3, 21453, 20689, 8940],
+            ["rocaine", "Mina", 0, 6, 3, 25478, 19353, 7752],
+            ["Zirbzy", "Violet", 0, 4, 6, 22515, 11114, 3531]
+          ] },
+        { "name": "Cloud9", "picks": ["Wraith", "Mirage", "Billy", "Rem", "Yamato", "Seven"], "bans": ["Paradox", "Baba", "Kelvin"],
+          "players": [
+            ["League", "Wraith", 5, 2, 13, 36205, 30508, 4882],
+            ["JonJon", "Seven", 5, 0, 17, 39610, 27052, 1496],
+            ["average", "Mirage", 5, 1, 14, 36805, 26730, 9470],
+            ["Lomein", "Billy", 4, 1, 14, 30374, 25041, 4826],
+            ["Zeno", "Yamato", 4, 3, 11, 29732, 22935, 10137],
+            ["Saiah", "Rem", 4, 0, 17, 30208, 12138, 36399]
+          ] }
+      ]
+    }
+  ],
+  "heroNote": "Mirage は3マップすべて勝ち、Lady Geist は3マップすべて負け（EU Map 2 の Buff Enjoyers、NA Map 2 の Cloud9、NA Map 3 の YFP）。5マップしかないので、傾向ではなく今回の結果として読む。",
+  "banNote": "Baba は EU では Leviathan、NA では Cloud9 が毎マップ BAN し、一度も使われていない。Pocket の BAN はすべて YFP。",
+  "takeaways": [
+    { "title": "集団戦に勝ったら、オブジェクトまで取る", "body": "EU Map 1 の Leviathan は、相手をほぼ全滅させた直後に Mid-Boss と Rift まで取って試合を終わらせた。" },
+    { "title": "序盤のリードは Guardian で形にする", "body": "NA Map 2 の YFP は、6分前に Guardian を2体壊して8分でキル 9-5。以降は Cloud9 を3キルに抑えた。" },
+    { "title": "先に取ったヒーローより、構成全体で見る", "body": "Lady Geist を取ったチームは3戦すべて負けている。" },
+    { "title": "終盤型の構成は、序盤に負けても勝てる", "body": "NA Map 3 の Cloud9（Wraith・Mirage・Seven など）は序盤の差を逆転した。" },
+    { "title": "BAN は「使われると困るヒーロー」を消す手", "body": "Baba は5マップすべてで BAN され、Nurse Harrow も4マップで BAN された。" }
+  ],
+  "practice": [
+    "集団戦に勝ったあと、オブジェクトを取れた回数",
+    "序盤に壊せた Guardian の数",
+    "自分のデス数（Cloud9 の average は NA Map 2 で11デス）"
+  ],
+  "sources": [
+    { "label": "Deadlock API（マッチデータ）", "url": "https://api.deadlock-api.com/" },
+    { "label": "Night Shift #65 配信アーカイブ（YouTube）", "url": "https://www.youtube.com/watch?v=u1u03ypaNhg" },
+    { "label": "EU 決勝（YouTube）", "url": "https://www.youtube.com/watch?v=Fs-L75YFu_I" },
+    { "label": "NA 決勝（YouTube）", "url": "https://www.youtube.com/watch?v=Kj2lMZmJquk" },
+    { "label": "DLNS 65 EU（EDL.GG）", "url": "https://edl.gg/news/dlns-65-eu" },
+    { "label": "DLNS 65 NA（EDL.GG）", "url": "https://edl.gg/news/dlns-65-na" },
+    { "label": "EU 決勝シリーズ（EDL.GG）", "url": "https://edl.gg/events/deadlock-night-shift-65-eu/series/grand-final-1-deadlock-night-shift-65-eu-template-grand-final" },
+    { "label": "NA 決勝シリーズ（EDL.GG）", "url": "https://edl.gg/events/deadlock-night-shift-65-na/series/grand-final-1-deadlock-night-shift-65-na-template-grand-final" }
+  ]
+}
