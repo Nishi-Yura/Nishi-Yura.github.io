@@ -19,7 +19,9 @@ _deadlock/
 ```
 
 `npm run build` を実行すると：
-1. `reports/*.json` を全部読んで、目次とレポートのページを作る
+1. `reports/*.json` を全部読んで、目次とレポートのページを作る（Discord や X に貼ったときのカード用のタグも入る）
+   - カードの画像（1200×630、スコアと見出し）も `scripts/og.mjs` が自動で作る。見た目を確認したいときは `npm run og` を実行して `public/deadlock-report/N/og.png` を開く
+   - Discord は一度読んだカードをしばらく覚えているので、公開後に直した内容はすぐには反映されないことがある
 2. `../deadlock-report/`（中に `1/`、`2/` …）と `../deadlock-assets/` をサイト直下に書き出す（他のページには触らない）
 
 あとは `git add` → `commit` → `push` で公開されます（反映まで1分ほど）。
