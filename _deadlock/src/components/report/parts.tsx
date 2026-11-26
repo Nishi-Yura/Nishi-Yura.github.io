@@ -11,7 +11,6 @@ export function SiteBar() {
   return (
     <header className="bg-ink text-panel">
       <nav className="mx-auto flex max-w-[760px] items-center gap-5 px-4 text-[12px]">
-        <a href="/" className="py-3.5 text-panel/70 hover:text-panel hover:no-underline">西本ゆら</a>
         <a href="/deadlock-report/" className="py-3.5 font-bold text-panel hover:no-underline hover:underline-offset-4 hover:[text-decoration-line:underline]">Deadlock レポート</a>
       </nav>
     </header>
@@ -22,8 +21,6 @@ export function SiteFoot() {
   return (
     <footer className="mx-auto max-w-[760px] px-4 pt-2 pb-10 text-[11px] text-mute">
       <a href="/deadlock-report/" className="inline-block py-3">レポート一覧</a>
-      <span className="px-2">・</span>
-      <a href="/" className="inline-block py-3">nishi-yura.github.io</a>
     </footer>
   )
 }
